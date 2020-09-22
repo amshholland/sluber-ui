@@ -1,0 +1,31 @@
+image:
+  name: atlassian/default-image:2
+  
+pipelines:
+  branches:
+    '{dk/cicd}':
+      - step:
+          script:
+            - apt-get update && apt-get install -y python3-pip
+            - pip3 install -U awscli
+            - $(aws ecr get-login --no-include-email --region us-west-2)
+            - docker build -t sluber-ui .
+            - docker tag sluber-ui:latest 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:${BITBUCKET_BUILD_NUMBER}
+            - docker tag sluber-ui:latest 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:latest
+            - docker push 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:latest
+            - docker push 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:${BITBUCKET_BUILD_NUMBER}
+            - aws ecs update-service --region us-east-1 --cluster ${BITBUCKET_BRANCH} --service frontend --force-new-deployment
+          services:
+            - docker
+          size: 2x
+  default:
+    - step:
+        script:
+          - echo "hello"
+        services:
+          - docker
+        size: 2x
+definitions:
+   services:
+      docker:
+         memory: 4096
