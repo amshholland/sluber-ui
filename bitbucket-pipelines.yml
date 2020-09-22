@@ -10,6 +10,7 @@ pipelines:
             - pip3 install -U awscli
             - $(aws ecr get-login --no-include-email --region us-west-2)
             - docker build -t sluber-ui .
+            - docker tag sluber-ui:latest 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:latest
             - docker tag sluber-ui:latest 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:${BITBUCKET_BUILD_NUMBER}
             - docker push 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:${BITBUCKET_BUILD_NUMBER}
             - docker push 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:latest
