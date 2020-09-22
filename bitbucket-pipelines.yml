@@ -3,7 +3,7 @@ image:
   
 pipelines:
   branches:
-    '{dk/cicd}':
+    '{dev}':
       - step:
           script:
             - apt-get update && apt-get install -y python3-pip
@@ -21,7 +21,10 @@ pipelines:
   default:
     - step:
         script:
-          - echo "hello"
+          - apt-get update && apt-get install -y python3-pip
+          - pip3 install -U awscli
+          - $(aws ecr get-login --no-include-email --region us-west-2)
+          - docker build -t sluber-ui .
         services:
           - docker
         size: 2x
