@@ -14,7 +14,7 @@ pipelines:
             - docker tag sluber-ui:latest 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:${BITBUCKET_BUILD_NUMBER}
             - docker push 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:${BITBUCKET_BUILD_NUMBER}
             - docker push 484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-ui:latest
-            - aws ecs update-service --region us-west-2 --cluster ${BITBUCKET_BRANCH} --service frontend --force-new-deployment
+            - aws ecs update-service --region us-west-2 --cluster sluber --service frontend --force-new-deployment
           services:
             - docker
           size: 2x
