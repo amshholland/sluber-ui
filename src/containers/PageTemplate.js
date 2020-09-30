@@ -1,6 +1,6 @@
 import React, { Component, Button } from 'react';
-import OfferRidePage from "./OfferRidePage"
-import FindRidePage from "./FindRidePage"
+import OfferRidePage from './OfferRidePage'
+import FindRidePage from './FindRidePage'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,7 +14,7 @@ function TabPanel(props) {
   
     return (
       <div
-        role="tabpanel"
+        role='tabpanel'
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
@@ -59,10 +59,10 @@ function TabPanel(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="Offer A Ride" {...a11yProps(0)} />
-            <Tab label="Find a Ride" {...a11yProps(1)} />
+        <AppBar position='static'>
+          <Tabs value={value} onChange={handleChange} aria-label='simple tabs example'>
+            <Tab label='Offer A Ride' {...a11yProps(0)} />
+            <Tab label='Find a Ride' {...a11yProps(1)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
@@ -74,34 +74,3 @@ function TabPanel(props) {
       </div>
     );
   }
-
-// class PageTemplate extends Component {
-//     constructor (props) {
-//         super(props)
-//         this.state = {
-//             tab: "Offer"
-//         }
-//     }
-
-//     onPress = e => {
-//         this.setState({tab: e})
-//     }
-
-//     render () {
-//         let temp;
-//         if (this.state.tab == "Offer") {
-//             temp = "offer"
-//         } else {
-//             temp = "Find"
-//         }
-//         return (
-//             <div>
-//                 <div onClick={this.onPress.bind(this, "Offer")}>Offer a Ride</div>
-//                 <div onClick={this.onPress.bind(this, "Find")}>Find a Ride</div>
-//                 {temp}
-//             </div>
-//           );
-//     }
-//   }
-  
-//   export default PageTemplate;

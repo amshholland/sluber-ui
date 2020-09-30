@@ -6,11 +6,9 @@ import PageTemplate from './containers/PageTemplate';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <PageTemplate></PageTemplate>
-        {/* <Route path="/" exact component={whatevercomponent} /> */}
-        {/* <Route path="/other" component={} /> */}
       </Router>
     </div>
   );

@@ -7,16 +7,13 @@ class OfferRidePage extends Component {
 
         }
     }
-
     componentDidMount() {
-        // endpoint call
+        // TODO: endpoint call, populate data
     }
 
     render() {
         return (
             <div >
-                {/* <TopMenu></TopMenu>
-                <CardComp></CardComp> */}
               Offer a Ride
             </div>
         );
