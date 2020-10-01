@@ -15,7 +15,6 @@ class FindRidePage extends Component {
     render() {
         return (
         <div >
-            Find a Ride
             <TopMenu></TopMenu>
         </div>
         );
