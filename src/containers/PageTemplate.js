@@ -1,4 +1,4 @@
-import React, { Component, Button } from 'react';
+import React, { Component } from 'react';
 import OfferRidePage from './OfferRidePage'
 import FindRidePage from './FindRidePage'
 import PropTypes from 'prop-types';
