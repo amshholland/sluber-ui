@@ -61,15 +61,15 @@ function TabPanel(props) {
       <div className={classes.root}>
         <AppBar position='static'>
           <Tabs value={value} onChange={handleChange} aria-label='simple tabs example'>
-            <Tab label='Offer A Ride' {...a11yProps(0)} />
-            <Tab label='Find a Ride' {...a11yProps(1)} />
+            <Tab label='Find A Ride' {...a11yProps(0)} />
+            <Tab label='Offer A Ride' {...a11yProps(1)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-            <OfferRidePage></OfferRidePage>
+          <FindRidePage></FindRidePage> 
         </TabPanel>
         <TabPanel value={value} index={1}>
-            <FindRidePage></FindRidePage>
+          <OfferRidePage></OfferRidePage>
         </TabPanel>
       </div>
     );
