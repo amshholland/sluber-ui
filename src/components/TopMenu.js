@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
 
 class TopMenu extends Component {
   constructor(props) {
@@ -17,10 +20,34 @@ class TopMenu extends Component {
       <div className='top-menu-cont'>
         <div className='search-cont'>
           <form className='departure-search-cont' noValidate autoComplete='off'>
-            <TextField id='departure-search-input' label='Departure' />
+            <TextField 
+              id='departure-search-input' 
+              label='Departure'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment>
+                    <IconButton>
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
           </form>
           <form className='destination-search-cont' noValidate autoComplete='off'> 
-            <TextField id="destination-search-input" label='Destination' />
+            <TextField 
+              id='destination-search-input' 
+              label='Destination'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment>
+                    <IconButton>
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
           </form>
           <form className='date-search-cont' noValidate autoComplete='off'>
             <TextField id="date-search-input" label='Date' type='date' InputLabelProps={{shrink: true }}/>
