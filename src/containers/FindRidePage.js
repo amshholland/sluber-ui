@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TopMenu from '../components/TopMenu'
+import CardList from '../components/CardList'
 
 class FindRidePage extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class FindRidePage extends Component {
         return (
         <div >
             <TopMenu></TopMenu>
+            <CardList></CardList>
         </div>
         );
     }

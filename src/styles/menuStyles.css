@@ -11,25 +11,24 @@
 }
 
 .departure-search-cont {
-    width: 30%;
-    position: absolute;
+    width: 33%;
+    float: left;
 }
 
 .destination-search-cont {
-    width: 30%;
-    margin-left: 30%;
-    position: absolute;
+    width: 33%;
+    float: left;
 }
 
 .date-search-cont {
-    width: 30%;
-    margin-left: 60%;
-    position: absolute;
+    width: 33%;
+    float: left;
 }
 
 .post-ride-btn-cont {
     width: 100%;
-    margin-top: 5%;
+    margin-top: 1%;
     text-align: center;
-    position: absolute;
+    float: left;
+    margin-bottom: 1%;
 }

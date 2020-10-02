@@ -48,7 +48,7 @@ function CardItem(props) {
 
     return (
         <div>
-            <Card>
+            <Card className={classes.card}>
                 <CardContent>
                     <Grid container spacing={24} className={classes.grid}>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
