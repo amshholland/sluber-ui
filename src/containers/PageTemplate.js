@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import OfferRidePage from './OfferRidePage'
 import FindRidePage from './FindRidePage'
 import PropTypes from 'prop-types';
@@ -8,7 +8,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import CardList from '../components/CardList'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -67,9 +66,7 @@ function TabPanel(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <FindRidePage></FindRidePage> 
-            <OfferRidePage></OfferRidePage>
-            <CardList></CardList>
+          <FindRidePage></FindRidePage>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <OfferRidePage></OfferRidePage>
