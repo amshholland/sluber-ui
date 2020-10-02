@@ -14,7 +14,6 @@ class OfferRidePage extends Component {
     render() {
         return (
             <div >
-              Offer a Ride
             </div>
         );
     }
