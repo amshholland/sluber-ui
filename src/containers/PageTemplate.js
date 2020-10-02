@@ -67,6 +67,7 @@ function TabPanel(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
+          <FindRidePage></FindRidePage> 
             <OfferRidePage></OfferRidePage>
             <CardList></CardList>
         </TabPanel>
