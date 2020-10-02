@@ -1,10 +1,9 @@
-import { createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const CardListStyles = () =>
-    createStyles({
-        '.grid': {
-            passing: 24,
-    },
-});
+const CardListStyles = makeStyles({
+        grid: {
+            "align-items": "center",
+        },
+    });
 
 export default CardListStyles;
