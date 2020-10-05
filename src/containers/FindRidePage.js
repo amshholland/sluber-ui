@@ -11,7 +11,6 @@ class FindRidePage extends Component {
         }
     }
     componentDidMount() {
-        // TODO: endpoint call, populate data
         axios.get('http://localhost:8080/sluber/trips')
         .then(res => {
             this.setState({ data: res.data })
@@ -22,10 +21,7 @@ class FindRidePage extends Component {
     }
 
     render() {
-        let cardList = null;
-        if (this.state.data != null) {
-            cardList = <CardList data={this.state.data}></CardList>
-        }
+        let cardList = this.state.data ? <CardList data={this.state.data}></CardList> : null
         return (
         <div >
             <TopMenu></TopMenu>
