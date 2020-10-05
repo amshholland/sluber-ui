@@ -11,7 +11,7 @@ class FindRidePage extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:8080/sluber/trips')
+        axios.get(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips')
         .then(res => {
             this.setState({ data: res.data })
         })
