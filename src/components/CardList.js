@@ -4,30 +4,11 @@ import CardListStyles from '../styles/CardListStyles.js'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const useStyles = CardListStyles
 
-let realData = [{
-    "tripId":"abc-123",
-    "origin":"Slalom HQ, Seattle",
-    "destination":"Quarterly, Westin Bellevue",
-    "departureTime":"2021-10-21T17:32:28Z",
-    "arrivalTime":"2021-10-21T18:32:28Z",
-    "comments":"Willing to pick people up anywhere in downtown Seattle.",
-    "driver": {
-    "name":"Todd S",
-    "phoneNumber":"555-555-1234"
-    },
-    "seatsAvailable":3,
-    "orginator":"DRIVER",
-    "passengers": [{
-        "name":"John A",
-        "phoneNumber":"543-234-1223"
-    }]
-}]
-
 function CardList(props) {
     return (
         <div >
             <Grid container spacing={24}>
-                {realData.map(element => {
+                {props.data.map(element => {
                     return (
                         <Grid item xs={12} sm={12} lg={12} xl={12}>
                             <CardItem data={element}/>

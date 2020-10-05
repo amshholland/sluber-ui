@@ -7,14 +7,14 @@ class FindRidePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            data: null,
         }
     }
     componentDidMount() {
         // TODO: endpoint call, populate data
-        axios.get('http://localhost:8080/sluber/trips', { headers: { "Content-Type": "application/json"}, data: {}})
+        axios.get('http://localhost:8080/sluber/trips')
         .then(res => {
-            console.log("Data: ", res.data)
+            this.setState({ data: res.data })
         })
         .catch(err => {
             console.log(err)
@@ -22,10 +22,14 @@ class FindRidePage extends Component {
     }
 
     render() {
+        let cardList = null;
+        if (this.state.data != null) {
+            cardList = <CardList data={this.state.data}></CardList>
+        }
         return (
         <div >
             <TopMenu></TopMenu>
-            <CardList></CardList>
+            {cardList}
         </div>
         );
     }
