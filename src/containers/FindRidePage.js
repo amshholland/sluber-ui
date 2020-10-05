@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TopMenu from '../components/TopMenu'
 import CardList from '../components/CardList'
+import axios from 'axios'
 
 class FindRidePage extends Component {
     constructor(props) {
@@ -11,6 +12,13 @@ class FindRidePage extends Component {
     }
     componentDidMount() {
         // TODO: endpoint call, populate data
+        axios.get('http://localhost:8080/sluber/trips', { headers: { "Content-Type": "application/json"}, data: {}})
+        .then(res => {
+            console.log("Data: ", res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     render() {
