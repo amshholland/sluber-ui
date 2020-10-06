@@ -1,19 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, setState } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 class TopMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
       departure: '',
+      value: 'passenger',
       destination: '',
     }
   }
+
+  handleChange = (event) => {
+    console.log(event.target.value)
+    // setState({ value: event.target.value });
+  };
 
   render() {
     return (
@@ -54,6 +65,13 @@ class TopMenu extends Component {
           </form>
         </div>
       <div className='post-ride-btn-cont'>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Driver/Passenger</FormLabel>
+          <RadioGroup row aria-label="usertype" name="user1" value={this.state.value} onChange={this.handleChange}>
+            <FormControlLabel value="driver" control={<Radio />} label="I'm a driver" />
+            <FormControlLabel value="passenger" control={<Radio />} label="I'm a passenger" />
+          </RadioGroup>
+        </FormControl>
         <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange}>
           Post a Ride
         </Button>

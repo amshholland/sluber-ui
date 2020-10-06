@@ -3,11 +3,13 @@ import OfferRidePage from './OfferRidePage'
 import FindRidePage from './FindRidePage'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
+import { Container, Toolbar, AppBar, Button } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -42,13 +44,25 @@ function TabPanel(props) {
     };
   }
   
+  // const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     flexGrow: 1,
+  //     backgroundColor: theme.palette.background.paper,
+  //   },
+  // }));
+  
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
     },
   }));
-  
+
   export default function SimpleTabs() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -59,18 +73,16 @@ function TabPanel(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position='static'>
-          <Tabs value={value} onChange={handleChange} aria-label='simple tabs example'>
-            <Tab label='Find A Ride' {...a11yProps(0)} />
-            <Tab label='Offer A Ride' {...a11yProps(1)} />
-          </Tabs>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Sluber
+            </Typography>
+          </Toolbar>
         </AppBar>
-        <TabPanel value={value} index={0}>
+        <Container>
           <FindRidePage></FindRidePage>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <OfferRidePage></OfferRidePage>
-        </TabPanel>
+        </Container>
       </div>
     );
   }
