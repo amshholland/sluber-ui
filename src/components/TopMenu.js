@@ -22,8 +22,7 @@ class TopMenu extends Component {
   }
 
   handleChange = (event) => {
-    console.log(event.target.value)
-    // setState({ value: event.target.value });
+    this.setState({ value: event.target.value });
   };
 
   render() {
@@ -65,16 +64,19 @@ class TopMenu extends Component {
           </form>
         </div>
       <div className='post-ride-btn-cont'>
+        <div className='post-ride-tog'>
         <FormControl component="fieldset">
-          <FormLabel component="legend">Driver/Passenger</FormLabel>
           <RadioGroup row aria-label="usertype" name="user1" value={this.state.value} onChange={this.handleChange}>
-            <FormControlLabel value="driver" control={<Radio />} label="I'm a driver" />
-            <FormControlLabel value="passenger" control={<Radio />} label="I'm a passenger" />
+            <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label="I'm a driver" /></div>
+            <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label="I'm a passenger" /></div>
           </RadioGroup>
         </FormControl>
+        </div>
+        <div className='post-ride-btn'>
         <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange}>
           Post a Ride
         </Button>
+        </div>
       </div>
     </div>
     );
