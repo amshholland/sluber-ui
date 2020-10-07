@@ -21,8 +21,17 @@ class PostRide extends Component {
     constructor(props) {
         super(props);
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
+        this.isDriver = this.isDriver = this.setDriverVal.bind(this);
         this.state = {
             employee: 'driver',
+        }
+    }
+
+    setDriverVal(val) {
+        if (this.state.employee === 'driver') {
+            return true
+        } else {
+            return false
         }
     }
 
@@ -33,6 +42,8 @@ class PostRide extends Component {
     }
 
     render() {
+        const isDriver = this.setDriverVal(this.state.employee)
+
         return (
             <DialogContent>
             <FormControl component="fieldset">
@@ -124,7 +135,7 @@ class PostRide extends Component {
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
                   id="post-seats" 
-                  label="Seats Available" 
+                  label="Seats Available"
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
