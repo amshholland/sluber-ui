@@ -8,23 +8,48 @@ class FindRidePage extends Component {
         super(props)
         this.state = {
             data: null,
+            value: 'driver',
+            passengerData: [],
+            driverData: [],
         }
     }
     componentDidMount() {
         axios.get(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips')
         .then(res => {
-            this.setState({ data: res.data })
+            // this.setState({ data: res.data })
+            for (let i in res.data) {
+                if (res.data[i].originator == "DRIVER") {
+                    let temp = this.state.driverData
+                    temp.push(res.data[i])
+                    this.setState({ driverData: temp })
+                } else {
+                    let temp = this.state.passengerData
+                    temp.push(res.data[i])
+                    this.setState({ passengerData: temp })
+                }
+            }
+            this.setState({ data: this.state.driverData })
         })
         .catch(err => {
             console.log(err)
         })
+
     }
+
+    handleChange = (event) => {
+        this.setState({ value: event.target.value });
+        if (event.target.value == "driver") {
+            this.setState({ data: this.state.driverData })
+        } else {
+            this.setState({ data: this.state.passengerData })
+        }
+    };
 
     render() {
         let cardList = this.state.data ? <CardList data={this.state.data}></CardList> : null
         return (
         <div >
-            <TopMenu></TopMenu>
+            <TopMenu handleChange={this.handleChange} value={this.state.value}></TopMenu>
             {cardList}
         </div>
         );
