@@ -7,8 +7,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import HomeIcon from '@material-ui/icons/Home';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
@@ -22,117 +22,117 @@ class PostRide extends Component {
         super(props);
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
         this.state = {
-          employee: 'driver'
+            employee: 'driver',
         }
-      }
+    }
 
-      handleEmployeeChange(event) {
+    handleEmployeeChange(event) {
         this.setState({
-          employee: event.target.value
+            employee: event.target.value
         })
-      }
+    }
 
-      render() {
-          return (
+    render() {
+        return (
             <DialogContent>
-            <FormControl component="fieldset">
-  +           <FormLabel component="legend">Employee Type</FormLabel>
-  +             <RadioGroup row aria-label="employee-type" name="employee-type" value={this.state.employee} onChange={this.handleEmployeeChange}>
-  +               <FormControlLabel value="driver" control={<Radio color="primary"/>} label="I'm a driver" />
-  +            <FormControlLabel value="passenger" control={<Radio color="primary"/>} label="I'm a passenger" />
-  +          </RadioGroup>
-  +        </FormControl>
-            <TextField 
-              id="post-name" 
-              label="Name" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <PermContactCalendarIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-            <TextField 
-              id="post-phone-number" 
-              label="Phone Number" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <PhoneAndroidIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-            <TextField 
-              id="post-origin" 
-              label="Origin"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <HomeIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-departure" 
-              label="Departure Time" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <ScheduleIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-destination" 
-              label="Destination" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <LocationOnIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-est-arrival" 
-              label="Estimated Arrival Time" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <FlightLandIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-seats" 
-              label="Seats Available" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <EventSeatIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
+                <FormControl component='fieldset'>
+                    <FormLabel component='legend'>Employee Type</FormLabel>
+                    <RadioGroup row aria-label='employee-type' name='employee-type' value={this.state.employee} onChange={this.handleEmployeeChange}>
+                        <FormControlLabel value='driver' control={<Radio color='primary'/>} label="I'm a driver" />
+                        <FormControlLabel value='passenger' control={<Radio color='primary'/>} label="I'm a passenger" />
+                    </RadioGroup>
+                </FormControl>
+                <TextField 
+                id='post-name' 
+                label='Name' 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <PermContactCalendarIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }}
+                />
+                <TextField 
+                id='post-phone-number' 
+                label='Phone Number' 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <PhoneAndroidIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }}
+                />
+                <TextField 
+                id='post-origin' 
+                label='Origin'
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <HomeIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }} 
+                />
+                <TextField 
+                id='post-departure' 
+                label='Departure Time' 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <ScheduleIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }} 
+                />
+                <TextField 
+                id='post-destination' 
+                label='Destination' 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <LocationOnIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }} 
+                />
+                <TextField 
+                id='post-est-arrival' 
+                label='Estimated Arrival Time' 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <FlightLandIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }} 
+                />
+                <TextField 
+                id='post-seats' 
+                label='Seats Available' 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment>
+                        <IconButton>
+                        <EventSeatIcon />
+                        </IconButton>
+                    </InputAdornment>
+                    )
+                }}
+                />
           </DialogContent>
           )
       }
