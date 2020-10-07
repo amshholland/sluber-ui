@@ -23,6 +23,19 @@ class PostRide extends Component {
         this.isDriver = this.isDriver = this.setDriverVal.bind(this);
         this.state = {
             employee: 'driver',
+            tripValue: {
+                origin: null,
+                destination: null,
+                departureTime: null,
+                arrivalTime: null,
+                seatsAvailable: null,
+                comments: null,
+                driver: {
+                  name: null,
+                  phoneNumber: null,
+                },
+                originator: null
+              }
         }
     }
 
@@ -55,7 +68,9 @@ class PostRide extends Component {
             <Grid container spacing={2}>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-name' 
+                  id='name' 
+                  value={this.props.tripValue.driver.name}
+                  onChange={this.props.handleChangeData}
                   placeholder='Name' 
                   InputProps={{
                     startAdornment: (
@@ -68,7 +83,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-phone-number' 
+                  id='phoneNumber' 
+                  value={this.props.tripValue.driver.phoneNumber}
+                  onChange={this.props.handleChangeData}
                   placeholder='Phone Number' 
                   InputProps={{
                     startAdornment: (
@@ -81,7 +98,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-origin' 
+                  id='origin' 
+                  value={this.props.tripValue.origin}
+                  onChange={this.props.handleChangeData}
                   placeholder='Origin'
                   InputProps={{
                     startAdornment: (
@@ -94,7 +113,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-departure' 
+                  id='departureTime'
+                  value={this.props.tripValue.departureTime}
+                  onChange={this.props.handleChangeData}
                   placeholder='Departure Time' 
                   InputProps={{
                     startAdornment: (
@@ -107,7 +128,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-destination' 
+                  id='destination' 
+                  value={this.props.tripValue.destination}
+                  onChange={this.props.handleChangeData}
                   placeholder='Destination' 
                   InputProps={{
                     startAdornment: (
@@ -120,7 +143,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-est-arrival' 
+                  id='arrivalTime' 
+                  value={this.props.tripValue.arrivalTime}
+                  onChange={this.props.handleChangeData}
                   placeholder='Est. Arrival Time' 
                   disabled={!isDriver}
                   InputProps={{
@@ -134,8 +159,11 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='post-seats' 
+                  id='seatsAvailable' 
+                  value={this.props.tripValue.seatsAvailable}
+                  onChange={this.props.handleChangeData}
                   placeholder='Seats Available'
+                  type="number"
                   disabled={!isDriver}
                   InputProps={{
                     startAdornment: (
@@ -148,7 +176,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <TextField
-                  id='post-comments'
+                  id='comments'
+                  value={this.props.tripValue.comments}
+                  onChange={this.props.handleChangeData}
                   className='post-comments'
                   placeholder='Additional Details (where to meet, car make/model, pickup/dropoff radius, etc.)'
                   multiline

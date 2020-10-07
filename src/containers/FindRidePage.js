@@ -20,11 +20,17 @@ class FindRidePage extends Component {
         })
     }
 
+    addToData = e => {
+        let temp = this.state.data
+        temp.unshift(e)
+        this.setState({ data: temp })
+    }
+
     render() {
         let cardList = this.state.data ? <CardList data={this.state.data}></CardList> : null
         return (
         <div >
-            <TopMenu></TopMenu>
+            <TopMenu addToData={this.addToData}/>
             {cardList}
         </div>
         );

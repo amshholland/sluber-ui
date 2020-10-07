@@ -7,17 +7,42 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import { Dialog, DialogActions } from '@material-ui/core';
 import PostRide from './PostRide'
+import axios from 'axios'
 
 class TopMenu extends Component {
   constructor(props) {
     super(props);
     this.handlePostOpen = this.handlePostOpen.bind(this);
     this.handlePostClose = this.handlePostClose.bind(this);
+    this.handlePostRide = this.handlePostRide.bind(this)
     this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
     this.state = {
       isPostRideOpen: false,
-      employee: 'driver'
+      employee: 'driver',
+      tripValue: {
+        origin: null,
+        destination: null,
+        departureTime: null,
+        arrivalTime: null,
+        seatsAvailable: null,
+        comments: null,
+        driver: {
+          name: null,
+          phoneNumber: null,
+        },
+        originator: null
+      }
     }
+  }
+
+  handleChangeData = e => {
+    let temp = this.state.tripValue
+    if (e.target.id == "name" || e.target.id == "phoneNumber") {
+      temp.driver[e.target.id] = e.target.value
+    } else {
+      temp[e.target.id] = e.target.value
+    }
+    console.log(this.state.tripValue, 'data here')
   }
 
   handlePostOpen() {
@@ -32,6 +57,17 @@ class TopMenu extends Component {
     })
   }
 
+  handlePostRide(value) {
+    axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+    this.handlePostClose()
+    this.props.addToData(this.state.tripValue)
+}
 
   handleEmployeeChange(event) {
     this.setState({
@@ -88,12 +124,12 @@ class TopMenu extends Component {
           fullWidth={true}
           maxWidth = {'md'}
         >
-          <PostRide></PostRide>
+          <PostRide handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
           <DialogActions>
             <Button onClick={this.handlePostClose} color='primary'>
               Cancel
             </Button>
-            <Button onClick={this.handlePostClose} color='primary'>
+            <Button onClick={this.handlePostRide} color='primary'>
               Submit
             </Button>
           </DialogActions>
