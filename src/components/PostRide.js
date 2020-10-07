@@ -46,18 +46,18 @@ class PostRide extends Component {
 
         return (
             <DialogContent>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Employee Type</FormLabel>
-              <RadioGroup row aria-label="employee-type" name="employee-type" value={this.state.employee} onChange={this.handleEmployeeChange}>
-                <FormControlLabel value="driver" control={<Radio color="primary"/>} label="I'm a driver" />
-                <FormControlLabel value="passenger" control={<Radio color="primary"/>} label="I'm a passenger" />
+            <FormControl component='fieldset'>
+              <FormLabel component='legend'>Employee Type</FormLabel>
+              <RadioGroup row aria-label='employee-type' name='employee-type' value={this.state.employee} onChange={this.handleEmployeeChange}>
+                <FormControlLabel value='driver' control={<Radio color='primary'/>} label="I'm a driver" />
+                <FormControlLabel value='passenger' control={<Radio color='primary'/>} label="I'm a passenger" />
               </RadioGroup>
             </FormControl>
             <Grid container spacing={2}>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-name" 
-                  label="Name" 
+                  id='post-name' 
+                  placeholder='Name' 
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -69,8 +69,8 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-phone-number" 
-                  label="Phone Number" 
+                  id='post-phone-number' 
+                  placeholder='Phone Number' 
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -82,8 +82,8 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-origin" 
-                  label="Origin"
+                  id='post-origin' 
+                  placeholder='Origin'
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -95,8 +95,8 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-departure" 
-                  label="Departure Time" 
+                  id='post-departure' 
+                  placeholder='Departure Time' 
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -108,8 +108,8 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-destination" 
-                  label="Destination" 
+                  id='post-destination' 
+                  placeholder='Destination' 
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -121,8 +121,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-est-arrival" 
-                  label="Est. Arrival Time" 
+                  id='post-est-arrival' 
+                  placeholder='Est. Arrival Time' 
+                  disabled={!isDriver}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -134,8 +135,9 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id="post-seats" 
-                  label="Seats Available"
+                  id='post-seats' 
+                  placeholder='Seats Available'
+                  disabled={!isDriver}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
@@ -147,11 +149,12 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <TextField
-                  id="outlined-multiline-static"
-                  label="Multiline"
+                  id='post-comments'
+                  className='post-comments'
+                  placeholder='Multiline'
                   multiline
                   rows={10}
-                  variant="outlined"
+                  variant='outlined'
                 />
               </Grid>
             </Grid>

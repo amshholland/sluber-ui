@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from "@material-ui/icons/Search";
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
 import { Dialog, DialogActions } from '@material-ui/core';
 import PostRide from './PostRide'
 
@@ -74,20 +74,24 @@ class TopMenu extends Component {
             />
           </form>
           <form className='date-search-cont' noValidate autoComplete='off'>
-            <TextField id="date-search-input" label='Date' type='date' InputLabelProps={{shrink: true }}/>
+            <TextField id='date-search-input' label='Date' type='date' InputLabelProps={{shrink: true }}/>
           </form>
         </div>
       <div className='post-ride-btn-cont'>
         <Button variant='contained' color='primary' onClick={this.handlePostOpen}>
           Post a Ride
         </Button>
-        <Dialog open={this.state.isPostRideOpen} onClose={this.handlePostClose}>
+        <Dialog 
+          className='post-ride-form-cont' 
+          open={this.state.isPostRideOpen} 
+          onClose={this.handlePostClose}
+        >
           <PostRide></PostRide>
           <DialogActions>
-            <Button onClick={this.handlePostClose} color="primary">
+            <Button onClick={this.handlePostClose} color='primary'>
               Cancel
             </Button>
-            <Button onClick={this.handlePostClose} color="primary">
+            <Button onClick={this.handlePostClose} color='primary'>
               Submit
             </Button>
           </DialogActions>
