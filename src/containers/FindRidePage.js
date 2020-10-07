@@ -16,7 +16,6 @@ class FindRidePage extends Component {
     componentDidMount() {
         axios.get(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips')
         .then(res => {
-            // this.setState({ data: res.data })
             for (let i in res.data) {
                 if (res.data[i].originator == "DRIVER") {
                     let temp = this.state.driverData
