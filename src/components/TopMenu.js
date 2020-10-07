@@ -30,7 +30,7 @@ class TopMenu extends Component {
           name: null,
           phoneNumber: null,
         },
-        originator: null
+        originator: "DRIVER"
       }
     }
   }
@@ -42,6 +42,12 @@ class TopMenu extends Component {
     } else {
       temp[e.target.id] = e.target.value
     }
+    console.log(this.state.tripValue, 'data here')
+  }
+
+  handleChangeEmpl = e => {
+    let temp = this.state.tripValue
+    temp["originator"] = e
     console.log(this.state.tripValue, 'data here')
   }
 
@@ -58,6 +64,7 @@ class TopMenu extends Component {
   }
 
   handlePostRide(value) {
+    
     axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
     .then(res => {
         console.log(res)
@@ -124,7 +131,7 @@ class TopMenu extends Component {
           fullWidth={true}
           maxWidth = {'md'}
         >
-          <PostRide handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
+          <PostRide handleChangeEmpl={this.handleChangeEmpl} handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
           <DialogActions>
             <Button onClick={this.handlePostClose} color='primary'>
               Cancel

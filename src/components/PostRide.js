@@ -22,25 +22,12 @@ class PostRide extends Component {
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
         this.isDriver = this.isDriver = this.setDriverVal.bind(this);
         this.state = {
-            employee: 'driver',
-            tripValue: {
-                origin: null,
-                destination: null,
-                departureTime: null,
-                arrivalTime: null,
-                seatsAvailable: null,
-                comments: null,
-                driver: {
-                  name: null,
-                  phoneNumber: null,
-                },
-                originator: null
-              }
+            employee: 'DRIVER',
         }
     }
 
     setDriverVal(val) {
-        if (this.state.employee === 'driver') {
+        if (this.state.employee === 'DRIVER') {
             return true
         } else {
             return false
@@ -51,6 +38,7 @@ class PostRide extends Component {
         this.setState({
             employee: event.target.value
         })
+        this.props.handleChangeEmpl(event.target.value)
     }
 
     render() {
@@ -61,8 +49,8 @@ class PostRide extends Component {
             <FormControl component='fieldset'>
               <FormLabel component='legend'>Employee Type</FormLabel>
               <RadioGroup row aria-label='employee-type' name='employee-type' value={this.state.employee} onChange={this.handleEmployeeChange}>
-                <FormControlLabel value='driver' control={<Radio color='primary'/>} label="I'm a driver" />
-                <FormControlLabel value='passenger' control={<Radio color='primary'/>} label="I'm a passenger" />
+                <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label="I'm a driver" />
+                <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label="I'm a passenger" />
               </RadioGroup>
             </FormControl>
             <Grid container spacing={2}>
