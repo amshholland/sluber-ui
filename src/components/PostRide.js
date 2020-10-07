@@ -21,8 +21,17 @@ class PostRide extends Component {
     constructor(props) {
         super(props);
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
+        this.isDriver = this.isDriver = this.setDriverVal.bind(this);
         this.state = {
             employee: 'driver',
+        }
+    }
+
+    setDriverVal(val) {
+        if (this.state.employee === 'driver') {
+            return true
+        } else {
+            return false
         }
     }
 
@@ -33,6 +42,8 @@ class PostRide extends Component {
     }
 
     render() {
+        const isDriver = this.setDriverVal(this.state.employee)
+
         return (
             <DialogContent>
                 <FormControl component='fieldset'>
@@ -44,7 +55,7 @@ class PostRide extends Component {
                 </FormControl>
                 <TextField 
                 id='post-name' 
-                label='Name' 
+                placeholder='Name' 
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
@@ -57,7 +68,7 @@ class PostRide extends Component {
                 />
                 <TextField 
                 id='post-phone-number' 
-                label='Phone Number' 
+                placeholder='Phone Number' 
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
@@ -70,7 +81,7 @@ class PostRide extends Component {
                 />
                 <TextField 
                 id='post-origin' 
-                label='Origin'
+                placeholder='Origin'
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
@@ -83,7 +94,7 @@ class PostRide extends Component {
                 />
                 <TextField 
                 id='post-departure' 
-                label='Departure Time' 
+                placeholder='Departure Time' 
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
@@ -96,7 +107,7 @@ class PostRide extends Component {
                 />
                 <TextField 
                 id='post-destination' 
-                label='Destination' 
+                placeholder='Destination' 
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
@@ -109,7 +120,8 @@ class PostRide extends Component {
                 />
                 <TextField 
                 id='post-est-arrival' 
-                label='Estimated Arrival Time' 
+                placeholder='Estimated Arrival Time' 
+                disabled={!isDriver}
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
@@ -122,7 +134,8 @@ class PostRide extends Component {
                 />
                 <TextField 
                 id='post-seats' 
-                label='Seats Available' 
+                placeholder='Seats Available' 
+                disabled={!isDriver}
                 InputProps={{
                     startAdornment: (
                     <InputAdornment>
