@@ -7,8 +7,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import HomeIcon from '@material-ui/icons/Home';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
@@ -22,18 +22,18 @@ class PostRide extends Component {
         super(props);
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
         this.state = {
-          employee: 'driver'
+            employee: 'driver',
         }
-      }
+    }
 
-      handleEmployeeChange(event) {
+    handleEmployeeChange(event) {
         this.setState({
-          employee: event.target.value
+            employee: event.target.value
         })
-      }
+    }
 
-      render() {
-          return (
+    render() {
+        return (
             <DialogContent>
             <FormControl component="fieldset">
               <FormLabel component="legend">Employee Type</FormLabel>
