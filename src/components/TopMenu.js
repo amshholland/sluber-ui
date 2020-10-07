@@ -85,6 +85,8 @@ class TopMenu extends Component {
           className='post-ride-form-cont' 
           open={this.state.isPostRideOpen} 
           onClose={this.handlePostClose}
+          fullWidth={true}
+          maxWidth = {'md'}
         >
           <PostRide></PostRide>
           <DialogActions>

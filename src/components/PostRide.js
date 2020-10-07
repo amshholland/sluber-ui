@@ -150,9 +150,9 @@ class PostRide extends Component {
                 <TextField
                   id='post-comments'
                   className='post-comments'
-                  placeholder='Multiline'
+                  placeholder='Additional Details (where to meet, car make/model, pickup/dropoff radius, etc.)'
                   multiline
-                  rows={10}
+                  rows={8}
                   variant='outlined'
                 />
               </Grid>
