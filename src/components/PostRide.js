@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
-import { DialogContent} from '@material-ui/core';
+import { DialogContent, Grid } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -36,103 +36,114 @@ class PostRide extends Component {
           return (
             <DialogContent>
             <FormControl component="fieldset">
-  +           <FormLabel component="legend">Employee Type</FormLabel>
-  +             <RadioGroup row aria-label="employee-type" name="employee-type" value={this.state.employee} onChange={this.handleEmployeeChange}>
-  +               <FormControlLabel value="driver" control={<Radio color="primary"/>} label="I'm a driver" />
-  +            <FormControlLabel value="passenger" control={<Radio color="primary"/>} label="I'm a passenger" />
-  +          </RadioGroup>
-  +        </FormControl>
-            <TextField 
-              id="post-name" 
-              label="Name" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <PermContactCalendarIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-            <TextField 
-              id="post-phone-number" 
-              label="Phone Number" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <PhoneAndroidIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-            <TextField 
-              id="post-origin" 
-              label="Origin"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <HomeIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-departure" 
-              label="Departure Time" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <ScheduleIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-destination" 
-              label="Destination" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <LocationOnIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-est-arrival" 
-              label="Estimated Arrival Time" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <FlightLandIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }} 
-            />
-            <TextField 
-              id="post-seats" 
-              label="Seats Available" 
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <EventSeatIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
+              <FormLabel component="legend">Employee Type</FormLabel>
+              <RadioGroup row aria-label="employee-type" name="employee-type" value={this.state.employee} onChange={this.handleEmployeeChange}>
+                <FormControlLabel value="driver" control={<Radio color="primary"/>} label="I'm a driver" />
+                <FormControlLabel value="passenger" control={<Radio color="primary"/>} label="I'm a passenger" />
+              </RadioGroup>
+            </FormControl>
+            <Grid container spacing={2}>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-name" 
+                  label="Name" 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <PermContactCalendarIcon />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-phone-number" 
+                  label="Phone Number" 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <PhoneAndroidIcon />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-origin" 
+                  label="Origin"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <HomeIcon />
+                      </InputAdornment>
+                    )
+                  }} 
+                />
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-departure" 
+                  label="Departure Time" 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <ScheduleIcon />
+                      </InputAdornment>
+                    )
+                  }} 
+                />
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-destination" 
+                  label="Destination" 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <LocationOnIcon />
+                      </InputAdornment>
+                    )
+                  }} 
+                />
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-est-arrival" 
+                  label="Est. Arrival Time" 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <FlightLandIcon />
+                      </InputAdornment>
+                    )
+                  }} 
+                />
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                <TextField 
+                  id="post-seats" 
+                  label="Seats Available" 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <EventSeatIcon />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Multiline"
+                  multiline
+                  rows={10}
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
           </DialogContent>
           )
       }
