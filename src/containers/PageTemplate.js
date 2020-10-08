@@ -1,11 +1,8 @@
 import React from 'react';
-import OfferRidePage from './OfferRidePage'
 import FindRidePage from './FindRidePage'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Container, Toolbar, AppBar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -45,10 +42,15 @@ function TabPanel(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
     },
   }));
-  
+
   export default function SimpleTabs() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -59,18 +61,16 @@ function TabPanel(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position='static'>
-          <Tabs class='ride-tabs' value={value} onChange={handleChange} aria-label='simple tabs example'>
-            <Tab label='Find a Ride' {...a11yProps(0)} />
-            <Tab label='Offer a Ride' {...a11yProps(1)} />
-          </Tabs>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              Sluber
+            </Typography>
+          </Toolbar>
         </AppBar>
-        <TabPanel value={value} index={0}>
+        <Container>
           <FindRidePage></FindRidePage>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <OfferRidePage></OfferRidePage>
-        </TabPanel>
+        </Container>
       </div>
     );
   }

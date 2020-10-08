@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, setState } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -8,6 +8,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Dialog, DialogActions } from '@material-ui/core';
 import PostRide from './PostRide'
 import axios from 'axios'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class TopMenu extends Component {
   constructor(props) {
@@ -118,26 +121,34 @@ class TopMenu extends Component {
           </form>
         </div>
       <div className='post-ride-btn-cont'>
-        <Button variant='contained' color='primary' onClick={this.handlePostOpen}>
-          Post a Ride
-        </Button>
-        <Dialog 
-          className='post-ride-form-cont' 
-          open={this.state.isPostRideOpen} 
-          onClose={this.handlePostClose}
-          fullWidth={true}
-          maxWidth = {'md'}
-        >
-          <PostRide handleChangeEmpl={this.handleChangeEmpl} handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
-          <DialogActions>
-            <Button onClick={this.handlePostClose} color='primary'>
-              Cancel
+          <div className='post-ride-tog'>
+            <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
+              <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='I&apos;m a driver' /></div>
+              <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='I&apos;m a passenger' /></div>
+            </RadioGroup>
+          </div>
+          <div className='post-ride-btn'>
+            <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange} onClick={this.handlePostOpen}>
+              Post a Ride
             </Button>
-            <Button onClick={this.handlePostRide} color='primary'>
-              Submit
-            </Button>
-          </DialogActions>
-        </Dialog>
+          </div>
+          <Dialog 
+            className='post-ride-form-cont' 
+            open={this.state.isPostRideOpen} 
+            onClose={this.handlePostClose}
+            fullWidth={true}
+            maxWidth = {'md'}
+          >
+            <PostRide handleChangeEmpl={this.handleChangeEmpl} handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
+            <DialogActions>
+              <Button onClick={this.handlePostClose} color='primary'>
+                Cancel
+              </Button>
+              <Button onClick={this.handlePostRide} color='primary'>
+                Submit
+              </Button>
+            </DialogActions>
+          </Dialog>
       </div>
     </div>
     );
