@@ -1,15 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import PageTemplate from './PageTemplate';
 
-test('renders Find a Ride tab', () => {
-  const { getElementById } = render(<PageTemplate />);
-  const divByClass = document.getElementById('simple-tab-0')
-  expect(divByClass.textContent).toEqual('Find a Ride')
+test('Render CardList and tests if certain text exists', () => {
+  render(<PageTemplate />)
+  screen.getByRole('heading', { name: "Sluber" })
 });
-
-test('renders Offer a Ride tab', () => {
-    const { getElementById } = render(<PageTemplate />);
-    const divByClass = document.getElementById('simple-tab-1')
-    expect(divByClass.textContent).toEqual('Offer a Ride')
-  });

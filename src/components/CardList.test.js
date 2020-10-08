@@ -15,10 +15,3 @@ test('Render CardList and tests if certain text exists', () => {
 
     screen.getByRole('heading', { name: "Todd S" })
 });
-
-// test('renders learn react link', () => {
-//     const app = render(<CardList />);
-//     const appByClass = document.querySelector(".MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom p");
-//     expect(appByClass.textContent).toEqual("Todd S")
-// });
-  

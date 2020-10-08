@@ -16,18 +16,9 @@ class FindRidePage extends Component {
     componentDidMount() {
         axios.get(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips')
         .then(res => {
-            for (let i in res.data) {
-                if (res.data[i].originator == "DRIVER") {
-                    let temp = this.state.driverData
-                    temp.push(res.data[i])
-                    this.setState({ driverData: temp })
-                } else {
-                    let temp = this.state.passengerData
-                    temp.push(res.data[i])
-                    this.setState({ passengerData: temp })
-                }
-            }
-            this.setState({ data: this.state.driverData })
+            let driverData = res.data.filter(o => o.originator === 'DRIVER')
+            let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
+            this.setState({ driverData: driverData, passengerData: passengerData, data: driverData })
         })
         .catch(err => {
             console.log(err)
@@ -37,7 +28,7 @@ class FindRidePage extends Component {
 
     handleChange = (event) => {
         this.setState({ value: event.target.value });
-        if (event.target.value == "driver") {
+        if (event.target.value == 'driver') {
             this.setState({ data: this.state.driverData })
         } else {
             this.setState({ data: this.state.passengerData })

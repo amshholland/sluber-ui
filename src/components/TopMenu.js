@@ -53,14 +53,14 @@ class TopMenu extends Component {
             />
           </form>
           <form className='date-search-cont' noValidate autoComplete='off'>
-            <TextField id="date-search-input" label='Date' type='date' InputLabelProps={{shrink: true }}/>
+            <TextField id='date-search-input' label='Date' type='date' InputLabelProps={{shrink: true }}/>
           </form>
         </div>
       <div className='post-ride-btn-cont'>
         <div className='post-ride-tog'>
-          <RadioGroup row aria-label="usertype" name="user1" value={this.props.value} onChange={this.props.handleChange}>
-            <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label="I'm a driver" /></div>
-            <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label="I'm a passenger" /></div>
+          <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
+            <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='I&apos;m a driver' /></div>
+            <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='I&apos;m a passenger' /></div>
           </RadioGroup>
         </div>
         <div className='post-ride-btn'>

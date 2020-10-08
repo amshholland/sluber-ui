@@ -19,9 +19,3 @@ test('renders date search field', () => {
     const divByClass = document.querySelector(".date-search-cont");
     expect(divByClass.textContent).toEqual('Date')
 });
-
-test('renders post a ride button', () => {
-    const topMenu = render(<TopMenu />);
-    const divByClass = document.querySelector(".post-ride-btn-cont");
-    expect(divByClass.textContent).toEqual('Post a Ride')
-});

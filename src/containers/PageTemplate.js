@@ -1,15 +1,10 @@
 import React from 'react';
-import OfferRidePage from './OfferRidePage'
 import FindRidePage from './FindRidePage'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Toolbar, AppBar, Button } from '@material-ui/core';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Container, Toolbar, AppBar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -43,13 +38,6 @@ function TabPanel(props) {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
-  
-  // const useStyles = makeStyles((theme) => ({
-  //   root: {
-  //     flexGrow: 1,
-  //     backgroundColor: theme.palette.background.paper,
-  //   },
-  // }));
   
   const useStyles = makeStyles((theme) => ({
     root: {
