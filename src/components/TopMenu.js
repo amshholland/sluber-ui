@@ -42,13 +42,12 @@ class TopMenu extends Component {
     } else {
       temp[e.target.id] = e.target.value
     }
-    console.log(this.state.tripValue, 'data here')
   }
 
   handleChangeEmpl = e => {
     let temp = this.state.tripValue
     temp["originator"] = e
-    console.log(this.state.tripValue, 'data here')
+
   }
 
   handlePostOpen() {
@@ -67,13 +66,13 @@ class TopMenu extends Component {
     
     axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
     .then(res => {
-        console.log(res)
+        this.handlePostClose()
+        this.props.addToData(this.state.tripValue)
     })
     .catch(err => {
         console.log(err)
     })
-    this.handlePostClose()
-    this.props.addToData(this.state.tripValue)
+    
 }
 
   handleEmployeeChange(event) {
