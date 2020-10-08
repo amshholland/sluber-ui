@@ -11,6 +11,10 @@ class FindRidePage extends Component {
             value: 'driver',
             passengerData: [],
             driverData: [],
+            passenger: {
+                name: 'Anthony Joo',
+                phone: '1234567890',
+            }
         }
     }
     componentDidMount() {
@@ -18,6 +22,7 @@ class FindRidePage extends Component {
         .then(res => {
             let driverData = res.data.filter(o => o.originator === 'DRIVER')
             let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
+            console.log(driverData)
             this.setState({ driverData: driverData, passengerData: passengerData, data: driverData })
         })
         .catch(err => {
@@ -31,6 +36,7 @@ class FindRidePage extends Component {
         temp.unshift(e)
         this.setState({ data: temp })
     }
+
     handleChange = (event) => {
         this.setState({ value: event.target.value });
         if (event.target.value == 'driver') {
@@ -40,8 +46,21 @@ class FindRidePage extends Component {
         }
     };
 
+    handleSubmit = e => {
+        // e is trip id
+        axios.post('http://localhost:8080/sluber/trips/' + e + '/add-passenger', { name: this.state.passenger.name, phone: this.state.passenger.phone },
+        { headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }})
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        // console.log(e, 'EEEE')
+    }
+
     render() {
-        let cardList = this.state.data ? <CardList data={this.state.data}></CardList> : null
+        let cardList = this.state.data ? <CardList handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null
         return (
         <div >
             <TopMenu handleChange={this.handleChange} value={this.state.value}></TopMenu>

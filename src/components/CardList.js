@@ -11,7 +11,7 @@ function CardList(props) {
                 {props.data.map(element => {
                     return (
                         <Grid item xs={12} sm={12} lg={12} xl={12}>
-                            <CardItem data={element}/>
+                            <CardItem handleSubmit={props.handleSubmit} data={element}/>
                         </Grid>
                     )
                 })}
@@ -52,7 +52,7 @@ function CardItem(props) {
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Button variant="contained" color="primary">
+                            <Button onClick={props.handleSubmit.bind(this, props.data.tripId)} variant="contained" color="primary">
                                 I'm interested
                             </Button>
                             <p>{props.data.seatsAvailable} seat/s remaining</p>
