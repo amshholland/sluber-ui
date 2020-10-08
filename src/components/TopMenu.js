@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react';
+import React, { Component } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -40,7 +40,7 @@ class TopMenu extends Component {
 
   handleChangeData = e => {
     let temp = this.state.tripValue
-    if (e.target.id == 'name' || e.target.id == 'phoneNumber') {
+    if (e.target.id === 'name' || e.target.id === 'phoneNumber') {
       temp.driver[e.target.id] = e.target.value
     } else {
       temp[e.target.id] = e.target.value

@@ -27,7 +27,7 @@ function CardItem(props) {
     let arriveDate = new Date(props.data.arrivalTime)
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-    let name = props.value == 'driver' ? props.data.driver.name : props.data.passengers[0].name
+    let name = props.value === 'driver' ? props.data.driver.name : props.data.passengers[0].name
 
     return (
         <div>
