@@ -13,7 +13,7 @@ class FindRidePage extends Component {
             driverData: [],
             passenger: {
                 name: 'Anthony Joo',
-                phone: '1234567890',
+                phoneNumber: '123-456-7890',
             }
         }
     }
@@ -48,8 +48,7 @@ class FindRidePage extends Component {
 
     handleSubmit = e => {
         // e is trip id
-        axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips/' + e + '/add-passenger', { name: this.state.passenger.name, phone: this.state.passenger.phone },
-        { headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }})
+        axios.put(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips/' + e + '/add-passenger', this.state.passenger)
         .then(res => {
             console.log(res)
         })
