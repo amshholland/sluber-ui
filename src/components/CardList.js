@@ -11,7 +11,7 @@ function CardList(props) {
                 {props.data.map(element => {
                     return (
                         <Grid item xs={12} sm={12} lg={12} xl={12}>
-                            <CardItem data={element}/>
+                            <CardItem value={props.value} data={element}/>
                         </Grid>
                     )
                 })}
@@ -27,6 +27,8 @@ function CardItem(props) {
     let arriveDate = new Date(props.data.arrivalTime)
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
+    let name = props.value == 'driver' ? props.data.driver.name : props.data.passengers[0].name
+
     return (
         <div>
             <Card className={classes.card}>
@@ -34,7 +36,7 @@ function CardItem(props) {
                     <Grid container spacing={24} className={classes.grid}>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
                             <Typography gutterBottom variant="h5" component="h2">
-                                <p>{props.data.driver.name}</p>
+                                <p>{name}</p>
                                 <AccountCircleIcon fontSize="large" />
                             </Typography>
                         </Grid>

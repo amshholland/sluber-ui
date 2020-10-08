@@ -41,7 +41,7 @@ class FindRidePage extends Component {
     };
 
     render() {
-        let cardList = this.state.data ? <CardList data={this.state.data}></CardList> : null
+        let cardList = this.state.data ? <CardList value={this.state.value} data={this.state.data}></CardList> : null
         return (
         <div >
             <TopMenu handleChange={this.handleChange} value={this.state.value}></TopMenu>
