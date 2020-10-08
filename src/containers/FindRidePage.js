@@ -25,27 +25,10 @@ class FindRidePage extends Component {
         })
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.passengerData !== this.state.passengerData && this.state.value === 'passenger') {
-    //         this.setState({ data: this.state.passengerData })
-    //     } else if (prevState.driverData !== this.state.driverData && this.state.value == 'driver') {
-    //         this.setState({ data: this.state.driverData })
-    //     }
-    // }
-
     addToData = e => {
         let temp = this.state.data
         temp.unshift(e)
         this.setState({ data: temp })
-        // if (e.originator === 'DRIVER') {
-        //     let temp = this.state.driverData
-        //     temp.push(e)
-        //     this.setState({ data: temp })
-        // } else {
-        //     let temp = this.state.passengerData
-        //     temp.push(e)
-        //     this.setState({ data: temp })
-        // }
     }
 
     handleChange = (event) => {
