@@ -33,7 +33,7 @@ class FindRidePage extends Component {
     }
     handleChange = (event) => {
         this.setState({ value: event.target.value });
-        if (event.target.value == 'driver') {
+        if (event.target.value === 'driver') {
             this.setState({ data: this.state.driverData })
         } else {
             this.setState({ data: this.state.passengerData })
