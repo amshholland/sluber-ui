@@ -26,6 +26,11 @@ class FindRidePage extends Component {
 
     }
 
+    addToData = e => {
+        let temp = this.state.data
+        temp.unshift(e)
+        this.setState({ data: temp })
+    }
     handleChange = (event) => {
         this.setState({ value: event.target.value });
         if (event.target.value == 'driver') {

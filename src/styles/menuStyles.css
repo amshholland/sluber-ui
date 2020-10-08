@@ -33,6 +33,10 @@
     margin-bottom: 1%;
 }
 
+.post-comments {
+    width: 100%
+}
+
 .post-ride-btn {
     width: 33%;
     float: left;

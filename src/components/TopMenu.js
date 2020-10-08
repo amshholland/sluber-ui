@@ -2,20 +2,84 @@ import React, { Component, setState } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from "@material-ui/icons/Search";
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+import { Dialog, DialogActions } from '@material-ui/core';
+import PostRide from './PostRide'
+import axios from 'axios'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class TopMenu extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.handlePostOpen = this.handlePostOpen.bind(this);
+    this.handlePostClose = this.handlePostClose.bind(this);
+    this.handlePostRide = this.handlePostRide.bind(this)
+    this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
     this.state = {
-      departure: '',
-      destination: '',
+      isPostRideOpen: false,
+      employee: 'driver',
+      tripValue: {
+        origin: null,
+        destination: null,
+        departureTime: null,
+        arrivalTime: null,
+        seatsAvailable: null,
+        comments: null,
+        driver: {
+          name: null,
+          phoneNumber: null,
+        },
+        originator: 'DRIVER'
+      }
     }
+  }
+
+  handleChangeData = e => {
+    let temp = this.state.tripValue
+    if (e.target.id == 'name' || e.target.id == 'phoneNumber') {
+      temp.driver[e.target.id] = e.target.value
+    } else {
+      temp[e.target.id] = e.target.value
+    }
+  }
+
+  handleChangeEmpl = e => {
+    let temp = this.state.tripValue
+    temp['originator'] = e
+
+  }
+
+  handlePostOpen() {
+    this.setState({
+      isPostRideOpen: true
+    })
+  }
+
+  handlePostClose() {
+    this.setState({
+      isPostRideOpen: false
+    })
+  }
+
+  handlePostRide(value) {
+    axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
+    .then(res => {
+        this.handlePostClose()
+        this.props.addToData(this.state.tripValue)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+  handleEmployeeChange(event) {
+    this.setState({
+      employee: event.target.value
+    })
   }
 
   render() {
@@ -57,17 +121,34 @@ class TopMenu extends Component {
           </form>
         </div>
       <div className='post-ride-btn-cont'>
-        <div className='post-ride-tog'>
-          <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
-            <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='I&apos;m a driver' /></div>
-            <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='I&apos;m a passenger' /></div>
-          </RadioGroup>
-        </div>
-        <div className='post-ride-btn'>
-        <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange}>
-          Post a Ride
-        </Button>
-        </div>
+          <div className='post-ride-tog'>
+            <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
+              <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='I&apos;m a driver' /></div>
+              <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='I&apos;m a passenger' /></div>
+            </RadioGroup>
+          </div>
+          <div className='post-ride-btn'>
+            <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange} onClick={this.handlePostOpen}>
+              Post a Ride
+            </Button>
+          </div>
+          <Dialog 
+            className='post-ride-form-cont' 
+            open={this.state.isPostRideOpen} 
+            onClose={this.handlePostClose}
+            fullWidth={true}
+            maxWidth = {'md'}
+          >
+            <PostRide handleChangeEmpl={this.handleChangeEmpl} handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
+            <DialogActions>
+              <Button onClick={this.handlePostClose} color='primary'>
+                Cancel
+              </Button>
+              <Button onClick={this.handlePostRide} color='primary'>
+                Submit
+              </Button>
+            </DialogActions>
+          </Dialog>
       </div>
     </div>
     );
