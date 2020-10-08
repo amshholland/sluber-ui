@@ -48,7 +48,7 @@ class FindRidePage extends Component {
 
     handleSubmit = e => {
         // e is trip id
-        axios.post('http://localhost:8080/sluber/trips/' + e + '/add-passenger', { name: this.state.passenger.name, phone: this.state.passenger.phone },
+        axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips/' + e + '/add-passenger', { name: this.state.passenger.name, phone: this.state.passenger.phone },
         { headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }})
         .then(res => {
             console.log(res)
