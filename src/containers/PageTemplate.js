@@ -22,7 +22,7 @@ function TabPanel(props) {
       >
         {value === index && (
           <Box p={3}>
-            <Typography>{children}</Typography>
+            <Typography component={'span'}>{children}</Typography>
           </Box>
         )}
       </div>
@@ -60,9 +60,9 @@ function TabPanel(props) {
     return (
       <div className={classes.root}>
         <AppBar position='static'>
-          <Tabs value={value} onChange={handleChange} aria-label='simple tabs example'>
-            <Tab label='Find A Ride' {...a11yProps(0)} />
-            <Tab label='Offer A Ride' {...a11yProps(1)} />
+          <Tabs class='ride-tabs' value={value} onChange={handleChange} aria-label='simple tabs example'>
+            <Tab label='Find a Ride' {...a11yProps(0)} />
+            <Tab label='Offer a Ride' {...a11yProps(1)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
