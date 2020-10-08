@@ -22,7 +22,6 @@ class FindRidePage extends Component {
         .then(res => {
             let driverData = res.data.filter(o => o.originator === 'DRIVER')
             let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
-            console.log(driverData)
             this.setState({ driverData: driverData, passengerData: passengerData, data: driverData })
         })
         .catch(err => {
@@ -47,7 +46,6 @@ class FindRidePage extends Component {
     };
 
     handleSubmit = e => {
-        // e is trip id
         axios.put(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips/' + e + '/add-passenger', this.state.passenger)
         .then(res => {
             console.log(res)
@@ -55,7 +53,6 @@ class FindRidePage extends Component {
         .catch(err => {
             console.log(err)
         })
-        // console.log(e, 'EEEE')
     }
 
     render() {
