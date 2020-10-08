@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, setState } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class TopMenu extends Component {
   constructor(props) {
@@ -50,13 +53,21 @@ class TopMenu extends Component {
             />
           </form>
           <form className='date-search-cont' noValidate autoComplete='off'>
-            <TextField id="date-search-input" label='Date' type='date' InputLabelProps={{shrink: true }}/>
+            <TextField id='date-search-input' label='Date' type='date' InputLabelProps={{shrink: true }}/>
           </form>
         </div>
       <div className='post-ride-btn-cont'>
+        <div className='post-ride-tog'>
+          <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
+            <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='I&apos;m a driver' /></div>
+            <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='I&apos;m a passenger' /></div>
+          </RadioGroup>
+        </div>
+        <div className='post-ride-btn'>
         <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange}>
           Post a Ride
         </Button>
+        </div>
       </div>
     </div>
     );

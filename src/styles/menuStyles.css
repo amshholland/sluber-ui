@@ -6,6 +6,7 @@
     width: auto;
     height: auto;
     margin-left: 3%;
+    margin-top: 2%;
     justify-content: center;
     text-align: center;
 }
@@ -28,7 +29,21 @@
 .post-ride-btn-cont {
     width: 100%;
     margin-top: 1%;
-    text-align: center;
     float: left;
     margin-bottom: 1%;
+}
+
+.post-ride-btn {
+    width: 33%;
+    float: left;
+}
+
+.post-ride-tog {
+    width: 66%;
+    float: left;
+}
+
+.post-ride-cont {
+    width: 50%;
+    float: left;
 }
