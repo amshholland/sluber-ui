@@ -30,14 +30,14 @@ class TopMenu extends Component {
           name: null,
           phoneNumber: null,
         },
-        originator: "DRIVER"
+        originator: 'DRIVER'
       }
     }
   }
 
   handleChangeData = e => {
     let temp = this.state.tripValue
-    if (e.target.id == "name" || e.target.id == "phoneNumber") {
+    if (e.target.id == 'name' || e.target.id == 'phoneNumber') {
       temp.driver[e.target.id] = e.target.value
     } else {
       temp[e.target.id] = e.target.value
@@ -46,7 +46,7 @@ class TopMenu extends Component {
 
   handleChangeEmpl = e => {
     let temp = this.state.tripValue
-    temp["originator"] = e
+    temp['originator'] = e
 
   }
 
@@ -63,7 +63,6 @@ class TopMenu extends Component {
   }
 
   handlePostRide(value) {
-    
     axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
     .then(res => {
         this.handlePostClose()
@@ -72,7 +71,6 @@ class TopMenu extends Component {
     .catch(err => {
         console.log(err)
     })
-    
 }
 
   handleEmployeeChange(event) {
