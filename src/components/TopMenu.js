@@ -42,6 +42,8 @@ class TopMenu extends Component {
     let temp = this.state.tripValue
     if (e.target.id === 'name' || e.target.id === 'phoneNumber') {
       temp.driver[e.target.id] = e.target.value
+    } else if (e.target.id === 'departureTime' || e.target.id === 'arrivalTime') {
+      temp[e.target.id] = e.target.value + ':00Z'
     } else {
       temp[e.target.id] = e.target.value
     }
