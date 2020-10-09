@@ -20,7 +20,6 @@ class FindRidePage extends Component {
             let driverData = res.data.filter(o => o.originator === 'DRIVER')
             let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
             this.setState({ driverData: driverData, passengerData: passengerData, data: driverData })
-            console.log(driverData)
         })
         .catch(err => {
             console.log(err)
