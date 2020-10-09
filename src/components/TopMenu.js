@@ -30,7 +30,10 @@ class TopMenu extends Component {
         arrivalTime: null,
         seatsAvailable: null,
         comments: null,
-        passengers: [],
+        passengers: [{
+          name: null,
+          phoneNumber: null,
+        }],
         driver: {
           name: null,
           phoneNumber: null,
@@ -43,7 +46,11 @@ class TopMenu extends Component {
   handleChangeData = e => {
     let temp = this.state.tripValue
     if (e.target.id === 'name' || e.target.id === 'phoneNumber') {
-      temp.driver[e.target.id] = e.target.value
+      if (this.state.tripValue.originator === 'DRIVER') {
+        temp.driver[e.target.id] = e.target.value
+      } else {
+        temp.passengers[0][e.target.id] = e.target.value
+      }
     } else if (e.target.id === 'departureTime' || e.target.id === 'arrivalTime') {
       temp[e.target.id] = e.target.value + ':00Z'
     } else {
