@@ -37,7 +37,6 @@ class FindRidePage extends Component {
             } else {
                 this.setState({ data: passengerData })
             }
-            console.log(driverData)
         })
         .catch(err => {
             console.log(err)
