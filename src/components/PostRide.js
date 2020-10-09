@@ -148,7 +148,7 @@ class PostRide extends Component {
                   }} 
                 />
               </Grid>
-              <Grid item xs={3} sm={2} md={3} lg={3} xl={3}>
+              <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
                 <TextField 
                   id='arrivalTime' 
                   label='Est. Arrival Time'
