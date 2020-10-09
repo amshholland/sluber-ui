@@ -47,12 +47,12 @@ class TopMenu extends Component {
     } else {
       temp[e.target.id] = e.target.value
     }
+    console.log(this.state.tripValue)
   }
 
   handleChangeEmpl = e => {
     let temp = this.state.tripValue
     temp['originator'] = e
-
   }
 
   handlePostOpen() {
@@ -61,17 +61,30 @@ class TopMenu extends Component {
     })
   }
 
-  handlePostClose() {
+  handlePostClose = e => {
     this.setState({
-      isPostRideOpen: false
+      isPostRideOpen: false,
+      tripValue: {
+        origin: null,
+        destination: null,
+        departureTime: null,
+        arrivalTime: null,
+        seatsAvailable: null,
+        comments: null,
+        driver: {
+          name: null,
+          phoneNumber: null,
+        },
+        originator: 'DRIVER'
+      }
     })
   }
 
   handlePostRide(value) {
     axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
     .then(res => {
-        this.handlePostClose()
         this.props.addToData(this.state.tripValue)
+        this.handlePostClose()
     })
     .catch(err => {
         console.log(err)
@@ -125,8 +138,8 @@ class TopMenu extends Component {
       <div className='post-ride-btn-cont'>
           <div className='post-ride-tog'>
             <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
-              <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='Driver Posts' /></div>
-              <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='Passenger Posts' /></div>
+              <div className='post-ride-cont'><FormControlLabel value='driver' control={<Radio />} label='Driver Posts' /></div>
+              <div className='post-ride-cont'><FormControlLabel value='passenger' control={<Radio />} label='Passenger Posts' /></div>
             </RadioGroup>
           </div>
           <div className='post-ride-btn'>
