@@ -61,17 +61,31 @@ class TopMenu extends Component {
     })
   }
 
-  handlePostClose() {
+  handlePostClose = e => {
     this.setState({
-      isPostRideOpen: false
+      isPostRideOpen: false,
+      tripValue: {
+        origin: null,
+        destination: null,
+        departureTime: null,
+        arrivalTime: null,
+        seatsAvailable: null,
+        comments: null,
+        driver: {
+          name: null,
+          phoneNumber: null,
+        },
+        originator: 'DRIVER'
+      }
     })
+    // e.target.reset()
   }
 
   handlePostRide(value) {
     axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
     .then(res => {
-        this.handlePostClose()
         this.props.addToData(this.state.tripValue)
+        this.handlePostClose()
     })
     .catch(err => {
         console.log(err)
