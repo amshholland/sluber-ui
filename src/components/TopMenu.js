@@ -47,12 +47,12 @@ class TopMenu extends Component {
     } else {
       temp[e.target.id] = e.target.value
     }
+    console.log(this.state.tripValue)
   }
 
   handleChangeEmpl = e => {
     let temp = this.state.tripValue
     temp['originator'] = e
-
   }
 
   handlePostOpen() {
@@ -78,7 +78,6 @@ class TopMenu extends Component {
         originator: 'DRIVER'
       }
     })
-    // e.target.reset()
   }
 
   handlePostRide(value) {
@@ -139,8 +138,8 @@ class TopMenu extends Component {
       <div className='post-ride-btn-cont'>
           <div className='post-ride-tog'>
             <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
-              <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='Driver Posts' /></div>
-              <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='Passenger Posts' /></div>
+              <div className='post-ride-cont'><FormControlLabel value='driver' control={<Radio />} label='Driver Posts' /></div>
+              <div className='post-ride-cont'><FormControlLabel value='passenger' control={<Radio />} label='Passenger Posts' /></div>
             </RadioGroup>
           </div>
           <div className='post-ride-btn'>

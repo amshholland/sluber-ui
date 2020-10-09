@@ -49,9 +49,9 @@ function TabPanel(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position='static'>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant='h6' className={classes.title}>
               Sluber
             </Typography>
           </Toolbar>

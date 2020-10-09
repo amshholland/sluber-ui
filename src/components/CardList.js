@@ -35,26 +35,26 @@ function CardItem(props) {
                 <CardContent>
                     <Grid container spacing={24} className={classes.grid}>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant='h5' component='h2'>
                                 <p>{name}</p>
-                                <AccountCircleIcon fontSize="large" />
+                                <AccountCircleIcon fontSize='large' />
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Typography variant="body2" color="textSecondary" component="p">
+                            <Typography variant='body2' color='textSecondary' component='p'>
                                 <h3>{props.data.origin} to {props.data.destination}</h3>
                                 <p>{date.toLocaleDateString(undefined, options)}</p>
                                 <p>Additional Comments: {props.data.comments}</p>
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Typography variant="body1" color="textSecondary" component="p">
+                            <Typography variant='body1' color='textSecondary' component='p'>
                                 <h4>Departs at: {date.toLocaleTimeString('en-US')}</h4>
                                 <h4>Arrives at: {arriveDate.toLocaleTimeString('en-US')}</h4>
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Button variant="contained" color="primary">
+                            <Button variant='contained' color='primary'>
                                 I'm interested
                             </Button>
                             <p>{props.data.seatsAvailable} seat/s remaining</p>

@@ -49,8 +49,8 @@ class PostRide extends Component {
             <FormControl component='fieldset'>
               <FormLabel component='legend'>Employee Type</FormLabel>
               <RadioGroup row aria-label='employee-type' name='employee-type' value={this.state.employee} onChange={this.handleEmployeeChange}>
-                <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label="I'm a driver" />
-                <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label="I'm a passenger" />
+                <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label='I&apos;m a driver' />
+                <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label='I&apos;m a passenger' />
               </RadioGroup>
             </FormControl>
             <Grid container spacing={2}>
@@ -120,7 +120,7 @@ class PostRide extends Component {
                   value={this.props.tripValue.seatsAvailable}
                   onChange={this.props.handleChangeData}
                   label='Seats Available'
-                  type="number"
+                  type='number'
                   disabled={!isDriver}
                   InputProps={{
                     startAdornment: (
