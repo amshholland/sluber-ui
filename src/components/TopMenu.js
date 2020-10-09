@@ -23,12 +23,14 @@ class TopMenu extends Component {
       isPostRideOpen: false,
       employee: 'driver',
       tripValue: {
+        tripId: null,
         origin: null,
         destination: null,
         departureTime: null,
         arrivalTime: null,
         seatsAvailable: null,
         comments: null,
+        passengers: [],
         driver: {
           name: null,
           phoneNumber: null,
