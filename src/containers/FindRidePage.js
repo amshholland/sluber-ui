@@ -23,7 +23,6 @@ class FindRidePage extends Component {
         .catch(err => {
             console.log(err)
         })
-
     }
 
     addToData = e => {
@@ -31,9 +30,10 @@ class FindRidePage extends Component {
         temp.unshift(e)
         this.setState({ data: temp })
     }
+
     handleChange = (event) => {
         this.setState({ value: event.target.value });
-        if (event.target.value == 'driver') {
+        if (event.target.value === 'driver') {
             this.setState({ data: this.state.driverData })
         } else {
             this.setState({ data: this.state.passengerData })
@@ -41,10 +41,10 @@ class FindRidePage extends Component {
     };
 
     render() {
-        let cardList = this.state.data ? <CardList data={this.state.data}></CardList> : null
+        let cardList = this.state.data ? <CardList value={this.state.value} data={this.state.data}></CardList> : null
         return (
         <div >
-            <TopMenu handleChange={this.handleChange} value={this.state.value}></TopMenu>
+            <TopMenu handleChange={this.handleChange} value={this.state.value} addToData={this.addToData}></TopMenu>
             {cardList}
         </div>
         );
