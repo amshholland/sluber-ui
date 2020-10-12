@@ -57,12 +57,15 @@ function CardItem(props) {
                                 <h4>Arrives at: {arriveTime}</h4>
                             </Typography>
                         </Grid>
-                        <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Button onClick={props.handleSubmit.bind(this, props.data.tripId)} variant="contained" color="primary">
-                                I'm interested
-                            </Button>
-                            <p>{props.data.seatsAvailable} seat/s remaining</p>
-                        </Grid>
+                        { props.value === 'driver' ?
+                            <Grid item xs={3} sm={3} lg={3} xl={3}>
+                                <Button onClick={props.handleSubmit.bind(this, props.data.tripId)} variant="contained" color="primary">
+                                    I'm interested
+                                </Button>
+                                <p>{props.data.seatsAvailable} seat/s remaining</p>
+                            </Grid> :
+                            null 
+                        }
                     </Grid>
                 </CardContent>
             </Card>
