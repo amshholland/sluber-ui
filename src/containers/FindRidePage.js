@@ -11,6 +11,10 @@ class FindRidePage extends Component {
             value: 'driver',
             passengerData: [],
             driverData: [],
+            passenger: {
+                name: 'Anthony Joo',
+                phoneNumber: '123-456-7890',
+            }
         }
     }
 
@@ -52,8 +56,19 @@ class FindRidePage extends Component {
         }
     };
 
+    handleSubmit = e => {
+        axios.put(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips/' + e + '/add-passenger', this.state.passenger)
+        .then(res => {
+            console.log(res)
+            this.addToData()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     render() {
-        let cardList = this.state.data ? <CardList value={this.state.value} data={this.state.data}></CardList> : null
+        let cardList = this.state.data ? <CardList value={this.state.value} handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null
         return (
         <div >
             <TopMenu handleChange={this.handleChange} value={this.state.value} addToData={this.addToData}></TopMenu>

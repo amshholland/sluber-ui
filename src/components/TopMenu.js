@@ -56,7 +56,6 @@ class TopMenu extends Component {
     } else {
       temp[e.target.id] = e.target.value
     }
-    console.log(this.state.tripValue)
   }
 
   handleChangeEmpl = e => {
@@ -84,6 +83,10 @@ class TopMenu extends Component {
           name: null,
           phoneNumber: null,
         },
+        passengers: [{
+          name: null,
+          phoneNumber: null,
+        }],
         originator: 'DRIVER'
       }
     })
