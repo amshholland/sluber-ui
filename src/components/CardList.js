@@ -11,7 +11,7 @@ function CardList(props) {
                 {props.data.map(element => {
                     return (
                         <Grid item xs={12} sm={12} lg={12} xl={12}>
-                            <CardItem handleSubmit={props.handleSubmit} data={element}/>
+                            <CardItem value={props.value} handleSubmit={props.handleSubmit} data={element}/>
                         </Grid>
                     )
                 })}
@@ -22,10 +22,16 @@ function CardList(props) {
 
 function CardItem(props) {
     const classes = useStyles()
-
-    let date = new Date(props.data.departureTime)
-    let arriveDate = new Date(props.data.arrivalTime)
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+    let departAll = new Date(props.data.departureTime)
+    let arriveAll = new Date(props.data.arrivalTime)
+
+    let departDate = (props.data.departureTime) ? departAll.toLocaleDateString(undefined, options) : ''
+    let departTime = (props.data.departureTime) ? departAll.toLocaleTimeString('en-US') : ''
+    let arriveTime = (props.data.arrivalTime) ? arriveAll.toLocaleTimeString('en-US') : ''
+
+    let name = props.value === 'driver' ? props.data.driver.name : props.data.passengers[0].name
 
     return (
         <div>
@@ -33,22 +39,22 @@ function CardItem(props) {
                 <CardContent>
                     <Grid container spacing={24} className={classes.grid}>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                <p>{props.data.driver.name}</p>
-                                <AccountCircleIcon fontSize="large" />
+                            <Typography gutterBottom variant='h5' component='h2'>
+                                <p>{name}</p>
+                                <AccountCircleIcon fontSize='large' />
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Typography variant="body2" color="textSecondary" component="p">
+                            <Typography variant='body2' color='textSecondary' component='p'>
                                 <h3>{props.data.origin} to {props.data.destination}</h3>
-                                <p>{date.toLocaleDateString(undefined, options)}</p>
+                                <p>{departDate}</p>
                                 <p>Additional Comments: {props.data.comments}</p>
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>
-                            <Typography variant="body1" color="textSecondary" component="p">
-                                <h4>Departs at: {date.toLocaleTimeString('en-US')}</h4>
-                                <h4>Arrives at: {arriveDate.toLocaleTimeString('en-US')}</h4>
+                            <Typography variant='body1' color='textSecondary' component='p'>
+                                <h4>Departs at: {departTime}</h4>
+                                <h4>Arrives at: {arriveTime}</h4>
                             </Typography>
                         </Grid>
                         <Grid item xs={3} sm={3} lg={3} xl={3}>

@@ -17,6 +17,7 @@ class FindRidePage extends Component {
             }
         }
     }
+
     componentDidMount() {
         axios.get(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips')
         .then(res => {
@@ -27,18 +28,28 @@ class FindRidePage extends Component {
         .catch(err => {
             console.log(err)
         })
-
     }
 
     addToData = e => {
-        let temp = this.state.data
-        temp.unshift(e)
-        this.setState({ data: temp })
+        axios.get(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips')
+        .then(res => {
+            let driverData = res.data.filter(o => o.originator === 'DRIVER')
+            let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
+            this.setState({ driverData: driverData, passengerData: passengerData })
+            if (this.state.value == 'driver') {
+                this.setState({ data: driverData })
+            } else {
+                this.setState({ data: passengerData })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     handleChange = (event) => {
         this.setState({ value: event.target.value });
-        if (event.target.value == 'driver') {
+        if (event.target.value === 'driver') {
             this.setState({ data: this.state.driverData })
         } else {
             this.setState({ data: this.state.passengerData })
@@ -56,10 +67,10 @@ class FindRidePage extends Component {
     }
 
     render() {
-        let cardList = this.state.data ? <CardList handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null
+        let cardList = this.state.data ? <CardList value={this.state.value} handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null
         return (
         <div >
-            <TopMenu handleChange={this.handleChange} value={this.state.value}></TopMenu>
+            <TopMenu handleChange={this.handleChange} value={this.state.value} addToData={this.addToData}></TopMenu>
             {cardList}
         </div>
         );

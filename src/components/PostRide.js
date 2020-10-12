@@ -49,8 +49,8 @@ class PostRide extends Component {
             <FormControl component='fieldset'>
               <FormLabel component='legend'>Employee Type</FormLabel>
               <RadioGroup row aria-label='employee-type' name='employee-type' value={this.state.employee} onChange={this.handleEmployeeChange}>
-                <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label="I'm a driver" />
-                <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label="I'm a passenger" />
+                <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label='I&apos;m a driver' />
+                <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label='I&apos;m a passenger' />
               </RadioGroup>
             </FormControl>
             <Grid container spacing={2}>
@@ -101,21 +101,6 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='departureTime'
-                  value={this.props.tripValue.departureTime}
-                  onChange={this.props.handleChangeData}
-                  placeholder='Departure Time' 
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment>
-                        <ScheduleIcon />
-                      </InputAdornment>
-                    )
-                  }} 
-                />
-              </Grid>
-              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
-                <TextField 
                   id='destination' 
                   value={this.props.tripValue.destination}
                   onChange={this.props.handleChangeData}
@@ -131,27 +116,11 @@ class PostRide extends Component {
               </Grid>
               <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
                 <TextField 
-                  id='arrivalTime' 
-                  value={this.props.tripValue.arrivalTime}
-                  onChange={this.props.handleChangeData}
-                  placeholder='Est. Arrival Time' 
-                  disabled={!isDriver}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment>
-                        <FlightLandIcon />
-                      </InputAdornment>
-                    )
-                  }} 
-                />
-              </Grid>
-              <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
-                <TextField 
                   id='seatsAvailable' 
                   value={this.props.tripValue.seatsAvailable}
                   onChange={this.props.handleChangeData}
-                  placeholder='Seats Available'
-                  type="number"
+                  label='Seats Available'
+                  type='number'
                   disabled={!isDriver}
                   InputProps={{
                     startAdornment: (
@@ -160,6 +129,41 @@ class PostRide extends Component {
                       </InputAdornment>
                     )
                   }}
+                />
+              </Grid>
+              <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                <TextField 
+                  id='departureTime'
+                  label='Departure Time'
+                  type='datetime-local'
+                  value={this.props.tripValue.departureTime}
+                  onChange={this.props.handleChangeData}
+                  InputLabelProps={{shrink: true }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <ScheduleIcon />
+                      </InputAdornment>
+                    )
+                  }} 
+                />
+              </Grid>
+              <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                <TextField 
+                  id='arrivalTime' 
+                  label='Est. Arrival Time'
+                  type='datetime-local'
+                  value={this.props.tripValue.arrivalTime}
+                  onChange={this.props.handleChangeData}
+                  disabled={!isDriver}
+                  InputLabelProps={{shrink: true }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <FlightLandIcon />
+                      </InputAdornment>
+                    )
+                  }} 
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>

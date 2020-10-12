@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react';
+import React, { Component } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -23,6 +23,57 @@ class TopMenu extends Component {
       isPostRideOpen: false,
       employee: 'driver',
       tripValue: {
+        tripId: null,
+        origin: null,
+        destination: null,
+        departureTime: null,
+        arrivalTime: null,
+        seatsAvailable: null,
+        comments: null,
+        passengers: [{
+          name: null,
+          phoneNumber: null,
+        }],
+        driver: {
+          name: null,
+          phoneNumber: null,
+        },
+        originator: 'DRIVER'
+      }
+    }
+  }
+
+  handleChangeData = e => {
+    let temp = this.state.tripValue
+    if (e.target.id === 'name' || e.target.id === 'phoneNumber') {
+      if (this.state.tripValue.originator === 'DRIVER') {
+        temp.driver[e.target.id] = e.target.value
+      } else {
+        temp.passengers[0][e.target.id] = e.target.value
+      }
+    } else if (e.target.id === 'departureTime' || e.target.id === 'arrivalTime') {
+      temp[e.target.id] = e.target.value + ':00Z'
+    } else {
+      temp[e.target.id] = e.target.value
+    }
+    console.log(this.state.tripValue)
+  }
+
+  handleChangeEmpl = e => {
+    let temp = this.state.tripValue
+    temp['originator'] = e
+  }
+
+  handlePostOpen() {
+    this.setState({
+      isPostRideOpen: true
+    })
+  }
+
+  handlePostClose = e => {
+    this.setState({
+      isPostRideOpen: false,
+      tripValue: {
         origin: null,
         destination: null,
         departureTime: null,
@@ -35,41 +86,14 @@ class TopMenu extends Component {
         },
         originator: 'DRIVER'
       }
-    }
-  }
-
-  handleChangeData = e => {
-    let temp = this.state.tripValue
-    if (e.target.id == 'name' || e.target.id == 'phoneNumber') {
-      temp.driver[e.target.id] = e.target.value
-    } else {
-      temp[e.target.id] = e.target.value
-    }
-  }
-
-  handleChangeEmpl = e => {
-    let temp = this.state.tripValue
-    temp['originator'] = e
-
-  }
-
-  handlePostOpen() {
-    this.setState({
-      isPostRideOpen: true
-    })
-  }
-
-  handlePostClose() {
-    this.setState({
-      isPostRideOpen: false
     })
   }
 
   handlePostRide(value) {
     axios.post(process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips', this.state.tripValue)
     .then(res => {
-        this.handlePostClose()
         this.props.addToData(this.state.tripValue)
+        this.handlePostClose()
     })
     .catch(err => {
         console.log(err)
@@ -123,8 +147,8 @@ class TopMenu extends Component {
       <div className='post-ride-btn-cont'>
           <div className='post-ride-tog'>
             <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
-              <div className='post-ride-cont'><FormControlLabel value="driver" control={<Radio />} label='I&apos;m a driver' /></div>
-              <div className='post-ride-cont'><FormControlLabel value="passenger" control={<Radio />} label='I&apos;m a passenger' /></div>
+              <div className='post-ride-cont'><FormControlLabel value='driver' control={<Radio />} label='Driver Posts' /></div>
+              <div className='post-ride-cont'><FormControlLabel value='passenger' control={<Radio />} label='Passenger Posts' /></div>
             </RadioGroup>
           </div>
           <div className='post-ride-btn'>

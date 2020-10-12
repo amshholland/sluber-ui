@@ -32,13 +32,6 @@ function TabPanel(props) {
     value: PropTypes.any.isRequired,
   };
   
-  function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
-  
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -53,17 +46,12 @@ function TabPanel(props) {
 
   export default function SimpleTabs() {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-  
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
   
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position='static'>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant='h6' className={classes.title}>
               Sluber
             </Typography>
           </Toolbar>
