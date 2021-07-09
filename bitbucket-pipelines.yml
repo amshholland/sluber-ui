@@ -1,5 +1,5 @@
 image:
-  name: atlassian/default-image:2
+  name: atlassian/default-image
   
 pipelines:
   branches:
