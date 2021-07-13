@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/menuStyles.css'
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { Button, IconButton, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { Dialog, DialogActions } from '@material-ui/core';
-import PostRide from './PostRide'
 import axios from 'axios'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -113,70 +109,57 @@ class TopMenu extends Component {
     return (
       <div className='top-menu-cont'>
         <div className='search-cont'>
-          <form className='departure-search-cont' noValidate autoComplete='off'>
-            <TextField 
-              id='departure-search-input' 
-              label='Departure'
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-          </form>
-          <form className='destination-search-cont' noValidate autoComplete='off'> 
-            <TextField 
-              id='destination-search-input' 
-              label='Destination'
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-          </form>
-          <form className='date-search-cont' noValidate autoComplete='off'>
-            <TextField id='date-search-input' label='Date' type='date' InputLabelProps={{shrink: true }}/>
-          </form>
+              <form className='departure-search-cont' noValidate autoComplete='off'>
+              <TextField
+                id='departure-search-input'
+                label='Departure'
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment>
+                      <IconButton>
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </form>
+              <form className='destination-search-cont' noValidate autoComplete='off'>
+              <TextField
+                id='destination-search-input'
+                label='Destination'
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment>
+                      <IconButton>
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </form>
+              <form className='date-search-cont' noValidate autoComplete='off'>
+              <TextField id='date-search-input' label='Date' type='date' InputLabelProps={{shrink: true }}/>
+            </form>
         </div>
-      <div className='post-ride-btn-cont'>
+
+        <div className='post-ride-btn-cont'>
+          <div className='post-ride-btn'>
+            <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange} onClick={this.handlePostOpen}>
+              Search
+            </Button>
+          </div>
+        </div>
+
+        <div className='post-ride-btn-cont'>
           <div className='post-ride-tog'>
             <RadioGroup row aria-label='usertype' name='user1' value={this.props.value} onChange={this.props.handleChange}>
               <div className='post-ride-cont'><FormControlLabel value='driver' control={<Radio />} label='Driver Posts' /></div>
               <div className='post-ride-cont'><FormControlLabel value='passenger' control={<Radio />} label='Passenger Posts' /></div>
             </RadioGroup>
           </div>
-          <div className='post-ride-btn'>
-            <Button variant='contained' color='primary' defaultValue={this.state.date} onChange={this.handleDateChange} onClick={this.handlePostOpen}>
-              Post a Ride
-            </Button>
-          </div>
-          <Dialog 
-            className='post-ride-form-cont' 
-            open={this.state.isPostRideOpen} 
-            onClose={this.handlePostClose}
-            fullWidth={true}
-            maxWidth = {'md'}
-          >
-            <PostRide handleChangeEmpl={this.handleChangeEmpl} handleChangeData={this.handleChangeData} tripValue={this.state.tripValue} />
-            <DialogActions>
-              <Button onClick={this.handlePostClose} color='primary'>
-                Cancel
-              </Button>
-              <Button onClick={this.handlePostRide} color='primary'>
-                Submit
-              </Button>
-            </DialogActions>
-          </Dialog>
-      </div>
+        </div>
     </div>
     );
   }

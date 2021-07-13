@@ -3,33 +3,28 @@
 }
 
 .search-cont {
-    width: auto;
+    width: 100%;
     height: auto;
-    margin-left: 3%;
     margin-top: 2%;
-    justify-content: center;
-    text-align: center;
+    display: inline-flex;
+    justify-content: space-between;
 }
 
 .departure-search-cont {
-    width: 33%;
-    float: left;
+    width: 50%;
 }
 
 .destination-search-cont {
-    width: 33%;
-    float: left;
+    width: 50%;
 }
 
 .date-search-cont {
     width: 33%;
-    float: left;
 }
 
 .post-ride-btn-cont {
     width: 100%;
-    margin-top: 1%;
-    float: left;
+    margin-top: 3%;
     margin-bottom: 1%;
 }
 
@@ -37,17 +32,16 @@
     width: 100%
 }
 
-.post-ride-btn {
-    width: 33%;
-    float: left;
-}
-
 .post-ride-tog {
-    width: 66%;
-    float: left;
+    width: 100%;
 }
 
-.post-ride-cont {
-    width: 50%;
-    float: left;
+@media screen and (max-width: 700px) {
+    .search-cont {
+        display: block;
+    }
+
+    .departure-search-cont, .date-search-cont, .destination-search-cont {
+        padding-bottom: 6%;
+    }
 }
