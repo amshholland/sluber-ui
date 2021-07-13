@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TopMenu from '../components/TopMenu'
 import CardList from '../components/CardList'
 import axios from 'axios'
+import EmptyState from '../components/Empty'
 
 class FindRidePage extends Component {
     constructor(props) {
@@ -69,13 +70,15 @@ class FindRidePage extends Component {
 
     render() {
         let cardList = this.state.data ? <CardList value={this.state.value} handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null
+        let results = this.state.data === null ? <EmptyState /> : cardList
+
         return (
         <div >
             <TopMenu handleChange={this.handleChange} value={this.state.value} addToData={this.addToData}></TopMenu>
-            {cardList}
+            {results}
         </div>
         );
     }
   }
-  
+
   export default FindRidePage;
