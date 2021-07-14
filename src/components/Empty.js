@@ -16,9 +16,12 @@ function EmptyState() {
 
     return (
         <div>
-            <Typography variant='h6' >
-                <EmojiTransportationIcon className={classes.icon} />
-                <p>There are no posts available to show.</p>
+            <EmojiTransportationIcon className={classes.icon} />
+            <Typography variant='body1' >
+                There are no posts available to show.
+            </Typography>
+            <Typography variant='body1' >
+                Please check back with us later.
             </Typography>
         </div>
     );
