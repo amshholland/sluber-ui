@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container, Toolbar, AppBar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import BottomNavBar from "../components/BottomNavigation";
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -42,6 +44,9 @@ function TabPanel(props) {
     title: {
       flexGrow: 1,
     },
+    container: {
+       marginBottom: theme.spacing(14),
+    }
   }));
 
   export default function SimpleTabs() {
@@ -49,16 +54,19 @@ function TabPanel(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position='static'>
+        <AppBar position='sticky'>
           <Toolbar>
             <Typography variant='h6' className={classes.title}>
               Sluber
             </Typography>
           </Toolbar>
         </AppBar>
-        <Container>
-          <FindRidePage></FindRidePage>
+        <Container className={classes.container}>
+            <FindRidePage></FindRidePage>
         </Container>
+        <Router>
+            <BottomNavBar></BottomNavBar>
+        </Router>
       </div>
     );
   }
