@@ -34,6 +34,18 @@
     width: 100%
 }
 
+.post-button-options{
+    margin-left: 23px;
+    margin-top: 1%;
+}
+
+.post-menu{
+    text-align:center;
+    align-items: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 5%;
+}
 .post-ride-tog {
     width: 100%;
 }

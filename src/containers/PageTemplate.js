@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container, Toolbar, AppBar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom';
 import BottomNavBar from "../components/BottomNavigation";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function TabPanel(props) {
             <Typography component={'span'}>{children}</Typography>
           </Box>
         )}
+        <Link to="/postRide"> Go to test comp</Link>
       </div>
     );
   }
@@ -54,19 +56,14 @@ function TabPanel(props) {
   
     return (
       <div className={classes.root}>
-        <AppBar position='sticky'>
-          <Toolbar>
-            <Typography variant='h6' className={classes.title}>
-              Sluber
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Container className={classes.container}>
+        <Container>
+          <Container className={classes.container}>
             <FindRidePage></FindRidePage>
-        </Container>
+            </Container>
         <Router>
             <BottomNavBar></BottomNavBar>
         </Router>
+       </Container>
       </div>
     );
   }
