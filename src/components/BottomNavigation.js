@@ -15,8 +15,10 @@ const useStyles = makeStyles({
         position: "fixed",
         bottom: 0,
         right: 0,
+
     },
 });
+
 
 function BottomNavBar() {
     const classes = useStyles();
@@ -29,7 +31,7 @@ function BottomNavBar() {
                 setValue(newValue);
             }}
             showLabels
-            className={classes.root}
+            classes={{ root: classes.root }}
         >
             <BottomNavigationAction
                 label="Find Ride"
@@ -37,7 +39,6 @@ function BottomNavBar() {
                 component={Link}
                 to={'/FindRidePage'}
             />
-
             <BottomNavigationAction
                 label="Post Ride"
                 icon={<PostAddIcon />}
