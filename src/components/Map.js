@@ -1,24 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
-import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
 import '../styles/map.css';
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-
-const Map = () => {
+const Map = ({ directions }) => {
 
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-122.3321);
   const [lat, setLat] = useState(47.6062);
   const [zoom, setZoom] = useState(9);
-
-  const directions = new MapboxDirections({
-    accessToken: mapboxgl.accessToken,
-    unit: 'metric',
-    profile: 'mapbox/driving',
-  });
 
   useEffect(() => {
     if (map.current) return; // initialize map only once

@@ -1,145 +1,186 @@
-import React, { Component, useState } from 'react';
-import '../styles/menuStyles.css';
-import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Map from './Map';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import Map from './Map';
+import '../styles/menuStyles.css';
+import mapboxgl from 'mapbox-gl';
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
+import debounce from '../util/debounce';
+
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const useStyles = makeStyles({
   root: {
-    '& .MuiInput-root:before': {
-      transition: 'none',
-      borderBottom: '2px solid #ddd',
+    '& .search-date': {
+      marginTop: '12px',
     },
-
-    '& .MuiInput-root:after': {
-      transition: 'none',
-    },
-    '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-      borderBottom: '2px solid #3f51b5',
+    '& .MuiInputBase-root': {
+      color: 'rgba(0, 0, 0, 0.54)',
     },
   },
 });
 
 const TopMenu = ({ value, handleChange }) => {
   const classes = useStyles();
-  const [isPostRideOpen, setIsPostRideOpen] = useState(false);
-  const [employee, setEmployee] = useState('driver');
-  const [tripValue, setTripValue] = useState({
-    tripId: null,
-    origin: null,
-    destination: null,
-    departureTime: null,
-    arrivalTime: null,
-    seatsAvailable: null,
-    comments: null,
-    passengers: [
-      {
-        name: null,
-        phoneNumber: null,
-      },
-    ],
-    driver: {
-      name: null,
-      phoneNumber: null,
-    },
-    originator: 'DRIVER',
+  const [departurePrediction, setdeparturePrediction] = useState([]);
+  const [destinationPrediction, setDestinationPrediction] = useState([]);
+  const [departure, setDeparture] = useState('');
+  const [destination, setDestination] = useState('');
+
+  const directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+    unit: 'metric',
+    profile: 'mapbox/driving',
   });
 
-  const handleChangeData = (e) => {
-    let temp = tripValue;
-    if (e.target.id === 'name' || e.target.id === 'phoneNumber') {
-      if (tripValue.originator === 'DRIVER') {
-        temp.driver[e.target.id] = e.target.value;
-      } else {
-        temp.passengers[0][e.target.id] = e.target.value;
-      }
-    } else if (
-      e.target.id === 'departureTime' ||
-      e.target.id === 'arrivalTime'
-    ) {
-      temp[e.target.id] = e.target.value + ':00Z';
+  const getAddress = async (lngLat) => {
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${lngLat}.json?access_token=${mapboxgl.accessToken}`;
+    const res = await axios.get(url);
+    if (res.status === 200 && res.data) {
+      return res.data.features[0].place_name;
+    }
+    return '';
+  };
+
+  const getdeparturePrediction = (departureLocation) => {
+    if (departureLocation) {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${departureLocation}.json?access_token=${mapboxgl.accessToken}`;
+      axios.get(url).then((response) => {
+        const features = response.data.features;
+        const placeName = features.map((feature) => feature.place_name);
+        setdeparturePrediction(placeName);
+      });
     } else {
-      temp[e.target.id] = e.target.value;
+      setdeparturePrediction([]);
     }
   };
 
-  const handleChangeEmpl = (e) => {
-    let temp = tripValue;
-    temp['originator'] = e;
-  };
-
-  const handlePostOpen = () => {
-    setIsPostRideOpen(true);
-  };
-
-  const handlePostClose = (e) => {
-    setIsPostRideOpen(false);
-    setTripValue({
-      origin: null,
-      destination: null,
-      departureTime: null,
-      arrivalTime: null,
-      seatsAvailable: null,
-      comments: null,
-      driver: {
-        name: null,
-        phoneNumber: null,
-      },
-      passengers: [
-        {
-          name: null,
-          phoneNumber: null,
-        },
-      ],
-      originator: 'DRIVER',
-    });
-  };
-
-  const handlePostRide = (value) => {
-    axios
-      .post(
-        process.env.REACT_APP_SLUBER_SERVICE_URL + '/trips',
-        this.state.tripValue
-      )
-      .then((res) => {
-        this.props.addToData(this.state.tripValue);
-        this.handlePostClose();
-      })
-      .catch((err) => {
-        console.log(err);
+  const getdestinationPrediction = (destinationLocation) => {
+    if (destinationLocation) {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${destinationLocation}.json?access_token=${mapboxgl.accessToken}`;
+      axios.get(url).then((response) => {
+        const features = response.data.features;
+        const placeName = features.map((feature) => feature.place_name);
+        setDestinationPrediction(placeName);
       });
+    } else {
+      setDestinationPrediction([]);
+    }
   };
 
-  const handleEmployeeChange = (e) => {
-    setEmployee(e.target.value);
+  const getUpdatedAddresses = (newDepLngLat, newDesLngLat) => {
+    if (newDepLngLat) {
+      getAddress(newDepLngLat).then(data => setDeparture(data));
+    }
+    if (newDesLngLat) {
+      getAddress(newDesLngLat).then(data => setDestination(data));
+    }
   };
+
+  const handleDepartureChange = useMemo(() => debounce(getdeparturePrediction, 1000), []);
+  const handleDestinationChange = useMemo(() => debounce(getdestinationPrediction, 1000), []);
+  const handleRouteChange = useMemo(() => debounce(getUpdatedAddresses, 1000), []);
+
+  const handleSearch = () => {
+    directions.setOrigin(departure);
+    directions.setDestination(destination);
+  };
+
+  useEffect(() => {
+    handleDepartureChange(departure);
+  }, [departure, handleDepartureChange]);
+
+  useEffect(() => {
+    handleDestinationChange(destination);
+  }, [destination, handleDestinationChange]);
+
+  useEffect(() => {
+    directions.on('route', () => {
+      const newDeparture = directions.getOrigin();
+      const newDestination = directions.getDestination();
+      let newDepLngLat = '';
+      let newDesLngLat = '';
+      if (newDeparture) {
+        newDepLngLat = `${newDeparture.geometry.coordinates[0]}, ${newDeparture.geometry.coordinates[1]}`;
+      }
+      if (newDestination) {
+        newDesLngLat = `${newDestination.geometry.coordinates[0]}, ${newDestination.geometry.coordinates[1]}`;
+      }
+      handleRouteChange(newDepLngLat, newDesLngLat);
+    });
+  }, [directions, handleRouteChange]);
 
   return (
     <div className="top-menu-cont">
       <div className="search-cont">
-        <TextField
-          id="date-search-input"
-          type="date"
-          className={`search-date ${classes.root}`}
-          fullWidth
-          disableUnderline={true}
-        />
+        <Grid
+          container
+          spacing={3}
+          alignItems="flex-end"
+          classes={{ root: classes.root }}
+        >
+          <Grid item xs={12} md={6} lg={5}>
+            <Autocomplete
+              freeSolo
+              defaultValue={''}
+              options={departurePrediction}
+              inputValue={departure || ''}
+              onInputChange={(event, newInputValue) => {
+                setDeparture(newInputValue);
+              }}
+              value={departure || ''}
+              onChange={(event, newValue) => {
+                const tempValue = newValue === null ? '' : newValue;
+                setDeparture(tempValue);
+              }}
+              renderInput={(params) => (
+                <TextField {...params} label="Departure" />
+              )}
+              getOptionSelected={(option, value) => option === value}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={5}>
+            <Autocomplete
+              freeSolo
+              defaultValue={''}
+              options={destinationPrediction}
+              inputValue={destination || ''}
+              onInputChange={(event, newInputValue) => {
+                setDestination(newInputValue);
+              }}
+              value={destination || ''}
+              onChange={(event, newValue) => {
+                const tempValue = newValue === null ? '' : newValue;
+                setDestination(tempValue);
+              }}
+              renderInput={(params) => (
+                <TextField {...params} label="Destination" />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={2}>
+            <TextField type="date" fullWidth className="search-date" />
+          </Grid>
+        </Grid>
       </div>
 
       <div className="post-ride-btn-cont">
         <div className="post-ride-btn">
-          <Button variant="contained" color="primary" onClick={handlePostOpen}>
+          <Button variant="contained" color="primary" onClick={handleSearch}>
             Search
           </Button>
         </div>
       </div>
 
-      <Map />
+      <Map directions={directions} />
 
       <div className="post-ride-btn-cont">
         <div className="post-ride-tog">

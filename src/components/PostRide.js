@@ -73,7 +73,7 @@ class PostRide extends Component {
             let driverData = res.data.filter(o => o.originator === 'DRIVER')
             let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
             this.setState({ driverData: driverData, passengerData: passengerData })
-            if (this.state.value == 'driver') {
+            if (this.state.value === 'driver') {
                 this.setState({ data: driverData })
             } else {
                 this.setState({ data: passengerData })
@@ -275,14 +275,14 @@ class PostRide extends Component {
               </Grid>
                 <div className='post-button-options'>
                   <Grid container item xs={12} sm={12} md={12} lg={12} xl={12} >
-                        <Link to to="/TopMenu">
+                        <Link to="/TopMenu">
                             <Button className='post-cancel-btn' variant='contained' color='primary' onClick={this.handlePostClose}>Cancel </Button>
                         </Link>
                   </Grid>
                 </div>
                 <div className='post-button-options'>
                    <Grid container item xs={12} sm={12} md={12} lg={12} xl={12} >
-                         <Link to to="/TopMenu">
+                         <Link to="/TopMenu">
                               <Button ClassName='post-submit-btn' variant='contained' color='primary' onClick={this.handlePostRide}>Submit</Button>
                          </Link>
                    </Grid>
