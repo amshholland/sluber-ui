@@ -143,10 +143,10 @@ class PostRide extends Component {
                 <FormControl component='fieldset'>
                     <FormLabel className='post-title' component='legend'>Employee Type</FormLabel>
                     <RadioGroup className='post-radiobutton' row aria-label='employee-type' name='employee-type' value={this.state.employee} onChange={this.handleEmployeeChange} >
-                    <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label='I&apos;m a driver' />
-                    <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label='I&apos;m a passenger' />
-              </RadioGroup>
-            </FormControl>
+                        <FormControlLabel value='DRIVER' control={<Radio color='primary'/>} label='I&apos;m a driver' />
+                        <FormControlLabel value='PASSENGER' control={<Radio color='primary'/>} label='I&apos;m a passenger' />
+                    </RadioGroup>
+                </FormControl>
 
             <Grid container className='grid-container' direction={'row'} spacing={6}>
               <Grid container item xs={12} sm={6} md={6} lg={3} xl={3}>
@@ -275,14 +275,14 @@ class PostRide extends Component {
               </Grid>
                 <div className='post-button-options'>
                   <Grid container item xs={12} sm={12} md={12} lg={12} xl={12} >
-                        <Link to to="/TopMenu">
+                        <Link to="/TopMenu">
                             <Button className='post-cancel-btn' variant='contained' color='primary' onClick={this.handlePostClose}>Cancel </Button>
                         </Link>
                   </Grid>
                 </div>
                 <div className='post-button-options'>
                    <Grid container item xs={12} sm={12} md={12} lg={12} xl={12} >
-                         <Link to to="/TopMenu">
+                         <Link to="/TopMenu">
                               <Button ClassName='post-submit-btn' variant='contained' color='primary' onClick={this.handlePostRide}>Submit</Button>
                          </Link>
                    </Grid>
