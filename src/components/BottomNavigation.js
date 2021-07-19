@@ -29,21 +29,22 @@ function BottomNavBar() {
             }}
             showLabels
             classes={{ root: classes.root }}
+            aria-label='bottom navigation'
         >
             <BottomNavigationAction
-                label="Find Ride"
+                label='Find Ride'
                 icon={<DirectionsCarIcon />}
                 component={Link}
                 to={'/FindRidePage'}
             />
             <BottomNavigationAction
-                label="Post Ride"
+                label='Post Ride'
                 icon={<PostAddIcon />}
                 component={Link}
                 to={'/PostRide'}
             />
             <BottomNavigationAction
-                label="Account"
+                label='Account'
                 icon={<PersonIcon />}
             />
         </BottomNavigation>

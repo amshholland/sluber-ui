@@ -119,12 +119,12 @@ const TopMenu = ({ value, handleChange }) => {
   }, [directions, handleRouteChange]);
 
   return (
-    <div className="top-menu-cont">
-      <div className="search-cont">
+    <div className='top-menu-cont'>
+      <div className='search-cont' role='form'>
         <Grid
           container
           spacing={3}
-          alignItems="flex-end"
+          alignItems='flex-end'
           classes={{ root: classes.root }}
         >
           <Grid item xs={12} md={6} lg={5}>
@@ -142,7 +142,7 @@ const TopMenu = ({ value, handleChange }) => {
                 setDeparture(tempValue);
               }}
               renderInput={(params) => (
-                <TextField {...params} label="Departure" />
+                <TextField {...params} label='Departure' />
               )}
               getOptionSelected={(option, value) => option === value}
             />
@@ -162,19 +162,19 @@ const TopMenu = ({ value, handleChange }) => {
                 setDestination(tempValue);
               }}
               renderInput={(params) => (
-                <TextField {...params} label="Destination" />
+                <TextField {...params} label='Destination' />
               )}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={2}>
-            <TextField type="date" fullWidth className="search-date" />
+            <TextField type='date' fullWidth className='search-date' />
           </Grid>
         </Grid>
       </div>
 
-      <div className="post-ride-btn-cont">
-        <div className="post-ride-btn">
-          <Button variant="contained" color="primary" onClick={handleSearch}>
+      <div className='post-ride-btn-cont'>
+        <div className='post-ride-btn'>
+          <Button variant='contained' color='primary' onClick={handleSearch}>
             Search
           </Button>
         </div>
@@ -182,27 +182,27 @@ const TopMenu = ({ value, handleChange }) => {
 
       <Map directions={directions} />
 
-      <div className="post-ride-btn-cont">
-        <div className="post-ride-tog">
+      <div className='post-ride-btn-cont'>
+        <div className='post-ride-tog'>
           <RadioGroup
             row
-            aria-label="usertype"
-            name="user1"
+            aria-label='Post Type'
+            name='user1'
             value={value}
             onChange={handleChange}
           >
-            <div className="post-ride-cont">
+            <div className='post-ride-cont'>
               <FormControlLabel
-                value="driver"
+                value='driver'
                 control={<Radio />}
-                label="Driver Posts"
+                label='Driver Posts'
               />
             </div>
-            <div className="post-ride-cont">
+            <div className='post-ride-cont'>
               <FormControlLabel
-                value="passenger"
+                value='passenger'
                 control={<Radio />}
-                label="Passenger Posts"
+                label='Passenger Posts'
               />
             </div>
           </RadioGroup>

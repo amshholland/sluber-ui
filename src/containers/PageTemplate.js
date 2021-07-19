@@ -27,7 +27,7 @@ function TabPanel(props) {
             <Typography component={'span'}>{children}</Typography>
           </Box>
         )}
-        <Link to="/postRide"> Go to test comp</Link>
+        <Link to='/postRide'> Go to test comp</Link>
       </div>
     );
 }
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     return (
       <div className={classes.root}>
         <Router>
-            <AppBar position='sticky'>
+            <AppBar position='sticky' role='banner' >
                 <Toolbar>
                     <Typography variant='h6' className={classes.title}>
                         Sluber
@@ -67,21 +67,21 @@ const useStyles = makeStyles((theme) => ({
                 {isActive && <TabNavigation />}
             </AppBar>
             <Switch>
-                <Route exact path="/">
-                    <Redirect to="/FindRidePage" />
+                <Route exact path='/'>
+                    <Redirect to='/FindRidePage' />
                 </Route>
-                <Route exact path="/FindRidePage">
+                <Route exact path='/FindRidePage'>
                     <FindRidePage/>
                 </Route>
-                <Route exact path="/PostRide">
+                <Route exact path='/PostRide'>
                     <PostRide/>
                 </Route>
-                <Route exact path="/Account">
+                <Route exact path='/Account'>
                     Account
                 </Route>
             </Switch>
             <Container className={classes.container}>
-                <Link to="/FindRidePage"/>
+                <Link to='/FindRidePage'/>
                 {!isActive && <BottomNavBar/>}
             </Container>
         </Router>
