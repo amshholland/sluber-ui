@@ -73,7 +73,7 @@ class PostRide extends Component {
             let driverData = res.data.filter(o => o.originator === 'DRIVER')
             let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
             this.setState({ driverData: driverData, passengerData: passengerData })
-            if (this.state.value == 'driver') {
+            if (this.state.value === 'driver') {
                 this.setState({ data: driverData })
             } else {
                 this.setState({ data: passengerData })

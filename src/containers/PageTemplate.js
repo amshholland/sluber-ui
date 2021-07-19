@@ -3,7 +3,7 @@ import FindRidePage from './FindRidePage';
 import PostRide from "../components/PostRide";
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Toolbar, AppBar } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import BottomNavBar from "../components/BottomNavigation";

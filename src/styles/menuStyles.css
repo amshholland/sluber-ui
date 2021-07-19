@@ -1,33 +1,23 @@
+.mapboxgl-control-container {
+    display: none;
+}
+
 .top-menu-cont {
     text-align: center;
-    padding-top: 130px;
-    position: relative;
 }
 
 .search-cont {
-    width: 100%;
-    height: auto;
-    margin-top: 2%;
-    display: inline-flex;
-    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.departure-search-cont {
-    width: 50%;
-}
-
-.destination-search-cont {
-    width: 50%;
-}
-
-.date-search-cont {
-    width: 33%;
+.search-date {
+    margin-top: 12px;
 }
 
 .post-ride-btn-cont {
     width: 100%;
     margin-top: 5%;
-    margin-bottom: 1%;
+    margin-bottom: 5%;
 }
 
 .post-comments {
@@ -39,47 +29,25 @@
     margin-top: 1%;
 }
 
-.post-menu{
+.post-menu {
     text-align:center;
     align-items: center;
     margin-right: 15%;
     margin-left: 15%;
     margin-top: 5%;
 }
+
 .post-ride-tog {
     width: 100%;
 }
 
-#date-search-input {
-    padding: 10px;
-    color: rgba(0,0,0,0.5);
-}
-
 @media screen and (max-width: 700px) {
-    .search-cont {
-        display: block;
-    }
-
     .departure-search-cont, .date-search-cont, .destination-search-cont {
         padding-bottom: 6%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .top-menu-cont {
-        padding-top: 80px;
-    }
-
-    .search-cont {
-        width: 80%;
-        padding: 0 10px;
-        margin: 0;
-    }
-
-    .search-cont .MuiFormControl-fullWidth {
-        width: 49%;
-    }
-
     .post-ride-btn-cont {
         margin-top: 30px;
     }
