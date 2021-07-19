@@ -3,6 +3,7 @@ import TopMenu from '../components/TopMenu'
 import CardList from '../components/CardList'
 import axios from 'axios'
 import EmptyState from '../components/Empty'
+import {Container} from "@material-ui/core";
 
 class FindRidePage extends Component {
     constructor(props) {
@@ -73,10 +74,10 @@ class FindRidePage extends Component {
         let results = this.state.data === null ? <EmptyState /> : cardList
 
         return (
-        <div >
+        <Container >
             <TopMenu handleChange={this.handleChange} value={this.state.value} addToData={this.addToData}></TopMenu>
             {results}
-        </div>
+        </Container>
         );
     }
   }

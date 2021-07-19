@@ -21,31 +21,33 @@ function BottomNavBar() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  return (
-    <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      showLabels
-      className={classes.root}
-    >
-      <BottomNavigationAction
-        label="Find Ride"
-        icon={<DirectionsCarIcon />}
-        component={Link}
-        to={'/FindRidePage'}
-      />
-
-      <BottomNavigationAction
-        label="Post Ride"
-        icon={<PostAddIcon />}
-        component={Link}
-        to={'/PostRide'}
-      />
-      <BottomNavigationAction label="Account" icon={<PersonIcon />} />
-    </BottomNavigation>
-  );
+    return (
+        <BottomNavigation
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+            showLabels
+            classes={{ root: classes.root }}
+        >
+            <BottomNavigationAction
+                label="Find Ride"
+                icon={<DirectionsCarIcon />}
+                component={Link}
+                to={'/FindRidePage'}
+            />
+            <BottomNavigationAction
+                label="Post Ride"
+                icon={<PostAddIcon />}
+                component={Link}
+                to={'/PostRide'}
+            />
+            <BottomNavigationAction
+                label="Account"
+                icon={<PersonIcon />}
+            />
+        </BottomNavigation>
+    );
 }
 
 export default BottomNavBar;
