@@ -3,7 +3,7 @@ import FindRidePage from './FindRidePage';
 import PostRide from "../components/PostRide";
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container } from '@material-ui/core';
+import { Container, Toolbar, AppBar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import BottomNavBar from "../components/BottomNavigation";
@@ -13,7 +13,7 @@ import TabNavigation from "../components/TabNavigation";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+
     return (
       <div
         role='tabpanel'
@@ -30,20 +30,21 @@ function TabPanel(props) {
         <Link to="/postRide"> Go to test comp</Link>
       </div>
     );
-  }
-  
-  TabPanel.propTypes = {
+}
+
+TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
-  };
-  
-  const useStyles = makeStyles((theme) => ({
+};
+
+
+const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
     title: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     container: {
        marginBottom: theme.spacing(14),
