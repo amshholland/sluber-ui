@@ -32,8 +32,8 @@ const Map = ({ directions }) => {
   });
 
   return (
-    <div className="map-container">
-      <div ref={mapContainer} className="map" />
+    <div className='map-container'>
+      <div ref={mapContainer} className='map'/>
     </div>
   );
 };

@@ -36,11 +36,11 @@ function CardItem(props) {
 
     return (
         <div>
-            <Card square elevation={2} className={classes.card} >
+            <Card square elevation={2} className={classes.card} role='listitem' >
                 <CardContent>
-                    <Grid container spacing={1} className={classes.grid} >
+                    <Grid container spacing={1} className={classes.grid} aria-label='Post Details'>
                         <Grid item xs={12} sm={3} lg={3} xl={3}>
-                            <Typography gutterBottom variant='h5' component='h2'>
+                            <Typography gutterBottom variant='h5' component='h5'>
                                 <p>{name}</p>
                                 <AccountCircleIcon fontSize='large' />
                             </Typography>

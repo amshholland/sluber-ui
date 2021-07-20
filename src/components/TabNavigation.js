@@ -32,15 +32,15 @@ function TabNavigation() {
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-                aria-label="tab navigation"
+                aria-label='Main Navigation'
                 classes={{ root: classes.root }}
-                indicatorColor="secondary"
+                indicatorColor='secondary'
                 showLabels
                 centered
             >
-                <Tab label="Find Ride" component={Link} to={'/FindRidePage'}/>
-                <Tab label="Post Ride" component={Link} to={'/PostRide'}/>
-                <Tab label="Account" />
+                <Tab label='Find Ride' component={Link} to={'/FindRidePage'}/>
+                <Tab label='Post Ride' component={Link} to={'/PostRide'}/>
+                <Tab label='Account' />
             </Tabs>
         </MuiThemeProvider>
     );

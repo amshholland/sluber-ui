@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
-        color: "lightgray",
+        color: 'lightgray',
         fontSize: 100,
         paddingTop: 70
     },
