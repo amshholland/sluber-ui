@@ -1,11 +1,11 @@
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import React from "react";
-import {Link} from "react-router-dom";
-import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
+import React, { useEffect } from "react";
+import {Link, useLocation} from "react-router-dom";
+import {createTheme, MuiThemeProvider} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         secondary: {
             main: '#ffffff'
@@ -24,6 +24,22 @@ const useStyles = makeStyles({
 function TabNavigation() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const location = useLocation();
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case '/FindRidePage':
+                setValue(0);
+                break;
+            case '/PostRide':
+                setValue(1);
+                break;
+            case '/Account':
+                setValue(2);
+                break;
+        }
+    }, [location]);
+
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -34,8 +50,7 @@ function TabNavigation() {
                 }}
                 aria-label='Main Navigation'
                 classes={{ root: classes.root }}
-                indicatorColor='secondary'
-                showLabels
+                indicatorColor="secondary"
                 centered
             >
                 <Tab label='Find Ride' component={Link} to={'/FindRidePage'}/>
