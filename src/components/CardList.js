@@ -32,7 +32,7 @@ function CardItem(props) {
     let departTime = (props.data.departureTime) ? departAll.toLocaleTimeString('en-US') : ''
     let arriveTime = (props.data.arrivalTime) ? arriveAll.toLocaleTimeString('en-US') : ''
 
-    let name = props.value === 'driver' ? props.data.driver.name : props.data.passengers[0].name
+    let name = props.value === 'driver' ? props.data.driver : props.data.passengers[0]
 
     return (
         <div>
