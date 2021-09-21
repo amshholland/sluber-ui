@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import {Link, useLocation} from "react-router-dom";
 import {createTheme, MuiThemeProvider} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import { LoginWithGoogle } from "./LoginWithGoogle";
 
 const theme = createTheme({
     palette: {
@@ -55,7 +56,7 @@ function TabNavigation() {
             >
                 <Tab label='Find Ride' component={Link} to={'/FindRidePage'}/>
                 <Tab label='Post Ride' component={Link} to={'/PostRide'}/>
-                <Tab label='Account' />
+                <LoginWithGoogle />
             </Tabs>
         </MuiThemeProvider>
     );
