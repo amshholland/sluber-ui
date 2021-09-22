@@ -3,19 +3,15 @@ import { signOut } from "../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 import "../styles/SignInWIthGoogle.css"
+import { Link } from 'react-router-dom';
 
 function SignOut() {
     const { user } = useContext( AuthContext );
 
-    // const determineRouteAfterSignIn = (userID: User.id) => {
-    //     //Check userdb
-    //     let route = userInDB ? 'xs/FindRidePage' : '/Account'
-    // }
-
     return (
-        <div className="SignOut"> 
+        <Link to="/FindRidePage"> 
             <button onClick={signOut}>Sign out</button>
-        </div>
+        </Link>
     );
 }
 
