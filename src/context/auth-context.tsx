@@ -8,20 +8,20 @@ const defaultValue: AuthContextModel = {
     user: null
 };
 
-export const AuthContext = createContext(defaultValue);
+export const AuthContext = createContext( defaultValue );
 
-export function AuthContextProvider({ children }: { children: ReactNode; }) {
-    const [user, setUser] = useState < firebase.User | null > (null);
+export function AuthContextProvider( { children }: { children: ReactNode; } ) {
+    const [ user, setUser ] = useState<firebase.User | null>( null );
+    console.log(`authcontextprovider`)
+    useEffect( () => {
+        return firebase.auth().onAuthStateChanged( newUser => {
+            setUser( newUser );
+        } );
+    }, [] );
 
-    useEffect(() => {
-        return firebase.auth().onAuthStateChanged(newUser => {
-            setUser(newUser);
-        });
-    }, []);
-
-    return ( 
-        <AuthContext.Provider value={{ user }}>
-            {children}
+    return (
+        <AuthContext.Provider value={ { user } }>
+            { children }
         </AuthContext.Provider>
     );
 };

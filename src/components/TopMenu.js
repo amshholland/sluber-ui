@@ -179,7 +179,6 @@ const TopMenu = ({ value, handleChange }) => {
           </Button>
         </div>
       </div>
-
       <Map directions={directions} />
 
       <div className='post-ride-btn-cont'>
