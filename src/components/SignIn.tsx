@@ -1,20 +1,18 @@
 import React from 'react';
-import { signInWithGoogle, signOut } from "../firebaseConfig";
+import { signInWithGoogle } from "../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 import "../styles/SignInWIthGoogle.css"
 
-function SignInWithGoogle() {
-    console.log('signinwithgoogle')
+function SignIn() {
     const { user } = useContext( AuthContext );
-    console.log( user );
+    console.log(user)
 
     return (
-        <div className="SignInWithGoogle"> 
+        <div className="SignIn"> 
             <button onClick={ signInWithGoogle }>Sign in</button>
-            <button onClick={signOut}>Sign out</button>
         </div>
     );
 }
 
-export default SignInWithGoogle;
+export default SignIn;
