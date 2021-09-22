@@ -10,6 +10,7 @@ import { AuthContext } from "../src/context/auth-context.tsx";
 function App() {
     const { user } = useContext( AuthContext );
     const signInOrSignOutButton = user ? <SignOut /> : <SignIn />;
+    
     return (
         <div className='App'>
             <Router>
