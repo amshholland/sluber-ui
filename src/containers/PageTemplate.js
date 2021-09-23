@@ -42,9 +42,11 @@ TabPanel.propTypes = {
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      zIndex: -1
     },
     title: {
         flexGrow: 1,
+        zIndex: -1
     },
     container: {
        marginBottom: theme.spacing(14),
