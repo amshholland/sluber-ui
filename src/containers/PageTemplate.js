@@ -10,6 +10,10 @@ import BottomNavBar from "../components/BottomNavigation";
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import {useMediaQuery} from "@material-ui/core";
 import TabNavigation from "../components/TabNavigation";
+import SignIn from "../components/SignIn";
+import SignOut from "../components/SignOut"
+import { useContext } from "react";
+import { AuthContext } from "../context/auth-context.tsx";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -56,7 +60,9 @@ const useStyles = makeStyles((theme) => ({
   export default function SimpleTabs() {
       const classes = useStyles();
       const isActive = useMediaQuery("(min-width: 1036px");
-  
+      const { user } = useContext( AuthContext );
+      const signInOrSignOutButton = user ? <SignOut /> : <SignIn />;
+
     return (
       <div className={classes.root}>
         <Router>
@@ -65,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
                     <Typography variant='h6' className={classes.title}>
                         Sluber
                     </Typography>
+                    {signInOrSignOutButton}
                 </Toolbar>
                 {isActive && <TabNavigation />}
             </AppBar>
