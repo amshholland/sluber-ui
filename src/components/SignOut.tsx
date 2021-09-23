@@ -22,7 +22,10 @@ function SignOut() {
 		<div className="SignOut">
 			{user && (
 				<div className="signOutDiv">
-					<div className="userAvatar" onClick={() => displaySignOutDropDown()}>
+					<div
+						className="userAvatarDiv"
+						onClick={() => displaySignOutDropDown()}
+					>
 						{!!user.photoURL && (
 							<img
 								className="userAvatar"
@@ -34,7 +37,12 @@ function SignOut() {
 					<div style={{ display: showSignOut }}>
 						{user && (
 							<Link to="/FindRidePage">
-								<Button className="signOut" onClick={signOut}>
+								<Button
+									className="signOut"
+									variant="contained"
+									color="primary"
+									onClick={signOut}
+								>
 									Sign Out
 								</Button>
 							</Link>
