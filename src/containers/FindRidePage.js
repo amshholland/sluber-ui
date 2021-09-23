@@ -4,11 +4,12 @@ import CardList from '../components/CardList'
 import axios from 'axios'
 import EmptyState from '../components/Empty'
 import {Container} from "@material-ui/core";
-
+import { SplashPage } from '../components/SplashPage';
 class FindRidePage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: true,
             data: null,
             value: 'driver',
             passengerData: [],
@@ -25,10 +26,11 @@ class FindRidePage extends Component {
         .then(res => {
             let driverData = res.data.filter(o => o.originator === 'DRIVER')
             let passengerData = res.data.filter(o => o.originator === 'PASSENGER')
-            this.setState({ driverData: driverData, passengerData: passengerData, data: driverData })
+            this.setState({ driverData: driverData, passengerData: passengerData, data: driverData, loading: false })
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
+            this.setState({loading: false})
         })
     }
 
@@ -73,6 +75,11 @@ class FindRidePage extends Component {
         let cardList = this.state.data ? <CardList value={this.state.value} handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null
         let results = this.state.data === null ? <EmptyState /> : cardList
 
+        if (this.state.loading) {
+            return (
+                <SplashPage />
+            )
+        }
         return (
         <Container >
             <TopMenu handleChange={this.handleChange} value={this.state.value} addToData={this.addToData}></TopMenu>
