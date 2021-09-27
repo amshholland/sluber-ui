@@ -8,8 +8,6 @@ import { Button } from "@material-ui/core";
 
 function SignIn() {
 	const { user } = useContext(AuthContext);
-	console.log(user);
-
 	// Must set up get to check DB for existing user
 	// Will change second route after set up
 	const signInRoute = user?.uid ? "/Account" : "/FindRidePage";
