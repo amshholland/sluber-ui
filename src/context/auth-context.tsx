@@ -1,27 +1,23 @@
 import React, { ReactNode, createContext, useEffect, useState } from "react";
-import firebase from '../firebaseConfig';
+import firebase from "../firebaseConfig";
 export interface AuthContextModel {
-    user: firebase.User | null;
+	user: firebase.User | null;
 }
 
 const defaultValue: AuthContextModel = {
-    user: null
+	user: null,
 };
 
-export const AuthContext = createContext( defaultValue );
+export const AuthContext = createContext(defaultValue);
 
-export function AuthContextProvider( { children }: { children: ReactNode; } ) {
-    const [ user, setUser ] = useState<firebase.User | null>( null );
-    console.log(`authcontextprovider`)
-    useEffect( () => {
-        return firebase.auth().onAuthStateChanged( newUser => {
-            setUser( newUser );
-        } );
-    }, [] );
+export function AuthContextProvider({ children }: { children: ReactNode }) {
+	const [user, setUser] = useState<firebase.User | null>(null);
+	console.log({ user });
+	useEffect(() => {
+		return firebase.auth().onAuthStateChanged((newUser) => {
+			setUser(newUser);
+		});
+	}, []);
 
-    return (
-        <AuthContext.Provider value={ { user } }>
-            { children }
-        </AuthContext.Provider>
-    );
-};
+	return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
+}
