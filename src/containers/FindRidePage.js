@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import TopMenu from "../components/TopMenu";
-import CardList from "../components/CardList";
 import axios from "axios";
 import EmptyState from "../components/Empty";
 import { Container } from "@material-ui/core";
@@ -77,8 +76,7 @@ class FindRidePage extends Component {
 	};
 
 	render() {
-		let cardList = this.state.data ? <CardList value={this.state.value} handleSubmit={this.handleSubmit} data={this.state.data}></CardList> : null;
-		let results = this.state.data === null ? <EmptyState /> : cardList;
+		let results = this.state.data === null ? <EmptyState />;
 
 		if (this.state.loading) {
 			return <SplashPage />;
