@@ -76,7 +76,7 @@ class FindRidePage extends Component {
 	};
 
 	render() {
-		let results = this.state.data === null ? <EmptyState />;
+		let results = <EmptyState />;
 
 		if (this.state.loading) {
 			return <SplashPage />;
